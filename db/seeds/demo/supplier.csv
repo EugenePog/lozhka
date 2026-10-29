@@ -1,0 +1,4 @@
+name,country,vat_number,contact,order_channel,order_email,min_order_value_cents,payment_terms_days,default_lead_time_days,is_active
+Eastern Foods Wholesale BV,NL,NL000000000B01,Sales desk: +31 10 000 0001,email,orders@easternfoods.example,25000,14,2,true
+Baltic Import Sp. z o.o.,PL,PL0000000000,Account manager: Anna K.,email,orders@balticimport.example,50000,30,4,true
+Frost Logistics BV,NL,NL000000001B01,Dispatch: +31 20 000 0002,phone,,0,7,1,true

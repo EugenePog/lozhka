@@ -1,0 +1,5 @@
+{% extends "backoffice/base.html" %}{% load staff %}{% block title %}Packing list {{ d.delivery_number }}{% endblock %}
+{% block content %}<div class="noprint row"><button class="btn" onclick="window.print()">Print</button><a class="btn secondary" href="{% url 'delivery_detail' d.pk %}">Back</a></div>
+<h1>Packing list · {{ d.delivery_number }}</h1><p class="sub">{{ d.delivery_date|date:"l j F" }} · {{ d.deliver_from|time:"H:i" }}–{{ d.deliver_to|time:"H:i" }} · {{ d.vehicle.name }} · {{ d.driver.name }}</p>
+<table><thead><tr><th>Order</th><th>Item</th><th class="num">Qty</th><th>Take from lot (oldest best-before first)</th></tr></thead><tbody>
+{% for r in rows %}<tr><td>{{ r.order.order_number }}</td><td>{{ r.line.name_snapshot }}</td><td class="num">{{ r.line.qty|qty }}</td><td>{% for p in r.picks %}{{ p.qty|qty }} × {{ p.receiving_line.supplier_lot_code|default:"lot" }} (BB {{ p.receiving_line.best_before|date:"j M Y" }}){% if not forloop.last %}; {% endif %}{% endfor %}</td></tr>{% endfor %}</tbody></table>{% endblock %}

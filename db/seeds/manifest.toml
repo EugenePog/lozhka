@@ -1,0 +1,182 @@
+# Seed manifest. Steps run top to bottom: parents before children. Foreign-key columns hold the parent's NATURAL key
+# ("app.Model:lookup"; composite keys use "a|b"). Every file is an upsert by `key`, so loading is repeatable.
+#
+#   make seed            # essential set
+#   make seed-demo       # essential + demo set
+
+[[set.essential.step]]
+file = "essential/vat_rate.csv"
+model = "catalog.VatRate"
+key = ["code"]
+
+[[set.essential.step]]
+file = "essential/allergen.csv"
+model = "catalog.Allergen"
+key = ["code"]
+
+[[set.essential.step]]
+file = "essential/allergen_translation.csv"
+model = "catalog.AllergenTranslation"
+key = ["allergen", "lang"]
+fk = { allergen = "catalog.Allergen:code" }
+
+[[set.essential.step]]
+file = "essential/category.csv"
+model = "catalog.Category"
+key = ["slug"]
+fk = { parent = "catalog.Category:slug" }
+
+[[set.essential.step]]
+file = "essential/category_translation.csv"
+model = "catalog.CategoryTranslation"
+key = ["category", "lang"]
+fk = { category = "catalog.Category:slug" }
+
+[[set.essential.step]]
+file = "essential/setting.csv"
+model = "core.Setting"
+key = ["key"]
+
+[[set.essential.step]]
+file = "essential/content_block.csv"
+model = "core.ContentBlock"
+key = ["slug", "lang"]
+
+[[set.essential.step]]
+file = "essential/expiry_rule.csv"
+model = "core.ExpiryRule"
+key = ["scope", "scope_ref"]
+
+[[set.essential.step]]
+file = "essential/delivery_zone.csv"
+model = "sales.DeliveryZone"
+key = ["name"]
+
+[[set.essential.step]]
+file = "essential/delivery_fee_tier.csv"
+model = "sales.DeliveryFeeTier"
+key = ["zone", "min_subtotal_cents"]
+fk = { zone = "sales.DeliveryZone:name" }
+
+[[set.essential.step]]
+file = "essential/delivery_template.csv"
+model = "sales.DeliveryTemplate"
+key = ["code"]
+
+[[set.essential.step]]
+file = "essential/return_reason.csv"
+model = "sales.ReturnReason"
+key = ["code"]
+
+[[set.essential.step]]
+file = "essential/return_reason_translation.csv"
+model = "sales.ReturnReasonTranslation"
+key = ["reason", "lang"]
+fk = { reason = "sales.ReturnReason:code" }
+
+# staff roles: groups that bundle the capability permissions (docs 02 s.4.7)
+[[set.essential.step]]
+hook = "staff_roles"
+
+[[set.essential.step]]
+file = "essential/depot.csv"
+model = "sales.Depot"
+key = ["name"]
+
+# ---- demo set ---------------------------------------------------------------------------------------------------
+
+[[set.demo.step]]
+file = "demo/brand.csv"
+model = "catalog.Brand"
+key = ["name"]
+
+[[set.demo.step]]
+file = "demo/product.csv"
+model = "catalog.Product"
+key = ["sku"]
+fk = { category = "catalog.Category:slug", brand = "catalog.Brand:name", vat_rate = "catalog.VatRate:code" }
+
+[[set.demo.step]]
+file = "demo/product_translation.csv"
+model = "catalog.ProductTranslation"
+key = ["product", "lang"]
+fk = { product = "catalog.Product:sku" }
+
+[[set.demo.step]]
+file = "demo/price.csv"
+model = "catalog.Price"
+key = ["product", "kind", "valid_from"]
+fk = { product = "catalog.Product:sku" }
+
+[[set.demo.step]]
+file = "demo/product_allergen.csv"
+model = "catalog.ProductAllergen"
+key = ["product", "allergen"]
+fk = { product = "catalog.Product:sku", allergen = "catalog.Allergen:code" }
+
+[[set.demo.step]]
+file = "demo/product_nutrition.csv"
+model = "catalog.ProductNutrition"
+key = ["product"]
+fk = { product = "catalog.Product:sku" }
+
+[[set.demo.step]]
+file = "demo/product_highlight.csv"
+model = "catalog.ProductHighlight"
+key = ["kind", "product"]
+fk = { product = "catalog.Product:sku" }
+
+[[set.demo.step]]
+file = "demo/supplier.csv"
+model = "procurement.Supplier"
+key = ["name"]
+
+[[set.demo.step]]
+file = "demo/supplier_product.csv"
+model = "procurement.SupplierProduct"
+key = ["supplier", "supplier_sku"]
+fk = { supplier = "procurement.Supplier:name", product = "catalog.Product:sku" }
+
+[[set.demo.step]]
+file = "demo/receiving.csv"
+model = "procurement.Receiving"
+key = ["supplier", "delivery_ref"]
+fk = { supplier = "procurement.Supplier:name" }
+
+[[set.demo.step]]
+file = "demo/receiving_line.csv"
+model = "procurement.ReceivingLine"
+key = ["receiving", "product", "supplier_lot_code"]
+fk = { receiving = "procurement.Receiving:supplier__name|delivery_ref", product = "catalog.Product:sku" }
+
+[[set.demo.step]]
+file = "demo/vehicle.csv"
+model = "sales.Vehicle"
+key = ["name"]
+
+[[set.demo.step]]
+file = "demo/driver.csv"
+model = "sales.Driver"
+key = ["name"]
+
+[[set.demo.step]]
+file = "demo/notification_recipient.csv"
+model = "core.NotificationRecipient"
+key = ["channel", "address"]
+
+[[set.demo.step]]
+hook = "staff_users"
+
+# customers have a password and an auth user, so they are loaded by a hook; addresses and orders follow
+[[set.demo.step]]
+hook = "customer_accounts"
+
+[[set.demo.step]]
+file = "demo/customer_address.csv"
+model = "customers.CustomerAddress"
+key = ["customer", "label"]
+fk = { customer = "customers.Customer:email" }
+
+# placed through the real checkout service, then renamed to the seeded order number
+[[set.demo.step]]
+hook = "demo_orders"

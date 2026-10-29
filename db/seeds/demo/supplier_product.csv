@@ -1,0 +1,32 @@
+supplier,supplier_sku,supplier_description,product,pack_size_units,purchase_price_cents,priority,is_orderable,min_order_qty_packs
+Baltic Import Sp. z o.o.,S-DAI-KEF-1L,S-DAI-KEF-1L,DAI-KEF-1L,1,110,1,true,1
+Baltic Import Sp. z o.o.,S-DAI-RYA-500,S-DAI-RYA-500,DAI-RYA-500,1,98,1,true,1
+Baltic Import Sp. z o.o.,S-DAI-TVO-400,S-DAI-TVO-400,DAI-TVO-400,1,154,1,true,1
+Baltic Import Sp. z o.o.,S-DAI-SMT-400,S-DAI-SMT-400,DAI-SMT-400,1,123,1,true,1
+Baltic Import Sp. z o.o.,S-DAI-SYR-200,S-DAI-SYR-200,DAI-SYR-200,1,79,1,true,1
+Baltic Import Sp. z o.o.,S-MEA-DOK-500,S-MEA-DOK-500,MEA-DOK-500,1,340,1,true,1
+Baltic Import Sp. z o.o.,S-MEA-KRA-400,S-MEA-KRA-400,MEA-KRA-400,1,371,1,true,1
+Eastern Foods Wholesale BV,S-FIS-SEL-500,S-FIS-SEL-500,FIS-SEL-500,1,278,1,true,1
+Eastern Foods Wholesale BV,S-FIS-SHP-250,S-FIS-SHP-250,FIS-SHP-250,1,247,1,true,1
+Frost Logistics BV,S-FRZ-PEL-800,S-FRZ-PEL-800,FRZ-PEL-800,1,358,1,true,1
+Frost Logistics BV,S-FRZ-VAR-500,S-FRZ-VAR-500,FRZ-VAR-500,1,247,1,true,1
+Frost Logistics BV,S-FRZ-PEL-1K,S-FRZ-PEL-1K,FRZ-PEL-1K,1,433,1,true,1
+Eastern Foods Wholesale BV,S-BAK-BOR-700,S-BAK-BOR-700,BAK-BOR-700,1,141,1,true,1
+Eastern Foods Wholesale BV,S-BAK-BAR-300,S-BAK-BAR-300,BAK-BAR-300,1,110,1,true,1
+Eastern Foods Wholesale BV,S-PAN-GRE-900,S-PAN-GRE-900,PAN-GRE-900,1,154,1,true,1
+Eastern Foods Wholesale BV,S-PAN-RIC-800,S-PAN-RIC-800,PAN-RIC-800,1,141,1,true,1
+Eastern Foods Wholesale BV,S-PAN-PAS-400,S-PAN-PAS-400,PAN-PAS-400,1,73,1,true,1
+Eastern Foods Wholesale BV,S-PAN-SOL-1L,S-PAN-SOL-1L,PAN-SOL-1L,1,247,1,true,1
+Eastern Foods Wholesale BV,S-PAN-MAY-400,S-PAN-MAY-400,PAN-MAY-400,1,117,1,true,1
+Eastern Foods Wholesale BV,S-PAN-TKM-480,S-PAN-TKM-480,PAN-TKM-480,1,160,1,true,1
+Eastern Foods Wholesale BV,S-PRE-GHE-720,S-PRE-GHE-720,PRE-GHE-720,1,172,1,true,1
+Eastern Foods Wholesale BV,S-PRE-SAU-800,S-PRE-SAU-800,PRE-SAU-800,1,154,1,true,1
+Eastern Foods Wholesale BV,S-PRE-BEE-450,S-PRE-BEE-450,PRE-BEE-450,1,123,1,true,1
+Eastern Foods Wholesale BV,S-SWE-ALY-100,S-SWE-ALY-100,SWE-ALY-100,1,110,1,true,1
+Eastern Foods Wholesale BV,S-SWE-ZEF-250,S-SWE-ZEF-250,SWE-ZEF-250,1,141,1,true,1
+Eastern Foods Wholesale BV,S-SWE-HAL-350,S-SWE-HAL-350,SWE-HAL-350,1,160,1,true,1
+Eastern Foods Wholesale BV,S-DRK-KVA-2L,S-DRK-KVA-2L,DRK-KVA-2L,1,117,1,true,1
+Eastern Foods Wholesale BV,S-DRK-COM-1L,S-DRK-COM-1L,DRK-COM-1L,1,141,1,true,1
+Eastern Foods Wholesale BV,S-DRK-TEA-100,S-DRK-TEA-100,DRK-TEA-100,1,278,1,true,1
+Eastern Foods Wholesale BV,S-DRK-TEA-25,S-DRK-TEA-25,DRK-TEA-25,1,185,1,true,1
+Eastern Foods Wholesale BV,S-DRK-VOD-500,S-DRK-VOD-500,DRK-VOD-500,1,681,1,true,1

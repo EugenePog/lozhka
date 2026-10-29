@@ -1,0 +1,18 @@
+{% extends "backoffice/base.html" %}{% load staff %}{% block title %}{{ s.name }}{% endblock %}
+{% block content %}<p><a href="{% url 'suppliers' %}">← Suppliers</a></p><h1>{{ s.name }}</h1>
+<form method="post">{% csrf_token %}<div class="card"><h2 style="margin-top:0">Terms</h2><div class="grid3">
+<div><label for="lead">Lead time (days)</label><input id="lead" name="lead" type="number" value="{{ s.default_lead_time_days }}"></div>
+<div><label for="mo">Minimum order (€)</label><input id="mo" name="min_order" value="{{ s.min_order_value_cents|euros }}"></div>
+<div><label for="fd">Free delivery from (€)</label><input id="fd" name="free_delivery" value="{% if s.free_delivery_threshold_cents %}{{ s.free_delivery_threshold_cents|euros }}{% endif %}"></div>
+<div><label for="pt">Payment terms (days)</label><input id="pt" name="terms_days" type="number" value="{{ s.payment_terms_days|default_if_none:'' }}"></div>
+<div><label for="oe">Order e-mail</label><input id="oe" name="order_email" type="email" value="{{ s.order_email }}"></div><div><label for="ct">Contact</label><input id="ct" name="contact" value="{{ s.contact }}"></div></div>
+<label for="sc">Order schedule: order weekday (0 = Monday), cut-off time, delivery weekday. One cycle per line.</label><textarea id="sc" name="schedule">{{ sched }}</textarea></div>
+<div class="card"><h2 style="margin-top:0">Products</h2><table><thead><tr><th>Product</th><th>Supplier code</th><th class="num">Pack size</th><th class="num">Min packs</th><th>Priority</th></tr></thead><tbody>
+{% for p in products %}<tr><td>{{ p.product.sku }}</td><td>{{ p.supplier_sku }}</td><td class="num">{{ p.pack_size_units|qty }}</td><td class="num">{{ p.min_order_qty_packs }}</td><td><select name="prio_{{ p.id }}">{% for i in "123" %}<option value="{{ i }}" {% if p.priority|stringformat:'d' == i %}selected{% endif %}>{% if i == "1" %}1st choice{% elif i == "2" %}2nd choice{% else %}3rd choice{% endif %}</option>{% endfor %}</select></td></tr>{% empty %}<tr><td colspan="5" class="muted">No products mapped.</td></tr>{% endfor %}</tbody></table></div>
+<button class="btn">Save supplier</button></form>
+<div class="card" style="margin-top:16px"><h2 style="margin-top:0">Credentials</h2><p class="muted">The stored values can never be viewed, including by administrators. They can only be replaced.</p>
+<table><thead><tr><th>Label</th><th>Kind</th><th>Username</th><th>Secret</th><th>Last replaced</th></tr></thead><tbody>{% for c in creds %}<tr><td>{{ c.c.label }}</td><td>{{ c.c.kind }}</td><td>{{ c.c.username }}</td><td>{% if c.has_secret %}<span class="tag">set</span>{% else %}<span class="tag warn">not set</span>{% endif %}</td><td>{{ c.c.last_rotated_at|date:"j M Y H:i"|default:"–" }}</td></tr>{% empty %}<tr><td colspan="5" class="muted">No credentials yet.</td></tr>{% endfor %}</tbody></table>
+{% if can_set_creds %}<h2>Replace or add credentials</h2><form method="post" action="{% url 'supplier_credential' s.pk %}" class="row">{% csrf_token %}
+<div><label for="cl">Label</label><input id="cl" name="label" required></div><div><label for="ck">Kind</label><select id="ck" name="kind">{% for k, v in kinds %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</select></div>
+<div><label for="cu">Username</label><input id="cu" name="username" autocomplete="off"></div><div><label for="ce">Endpoint URL</label><input id="ce" name="endpoint_url"></div>
+<div><label for="cs">New secret</label><input id="cs" name="secret" type="password" autocomplete="new-password" required></div><button class="btn">Replace credentials</button></form>{% endif %}</div>{% endblock %}

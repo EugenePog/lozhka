@@ -1,0 +1,17 @@
+{% extends "backoffice/base.html" %}{% block title %}Delivery templates{% endblock %}
+{% block content %}<h1>Delivery templates</h1><p class="sub">Define the deliveries customers can choose. Orders placed in a collection range go on that delivery. The delivery day is the first delivery range that starts after the collection range ends.</p>
+<div class="card"><strong>Collection ranges across the day</strong>
+<div class="bar">{% for s in segs %}<span style="left:{{ s.left|floatformat:2 }}%;width:{{ s.width|floatformat:2 }}%;background:{{ s.color }}">{{ s.label }}</span>{% endfor %}</div>
+<div class="bar-scale"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+{% if gap %}<div class="msg error" style="margin-top:10px">Gap or overlap: {{ gap }} minutes. Together the active collection ranges must cover all 24 hours. Saving is blocked.</div>{% else %}<div class="msg" style="margin-top:10px">The active collection ranges cover the 24 hours exactly.</div>{% endif %}</div>
+<form method="post">{% csrf_token %}<table><thead><tr><th>Code</th><th>Name</th><th>Collect from–to</th><th>Deliver from–to</th><th>Delivered</th><th class="num">Capacity</th><th class="num">Hold (h)</th><th>Active</th></tr></thead><tbody>
+{% for r in rows %}<tr><td><input type="hidden" name="id" value="{{ r.id }}"><input name="code" value="{{ r.code }}" style="width:60px"></td><td><input name="name" value="{{ r.name }}"></td>
+<td><input name="collect_from" value="{{ r.collect_from|time:'H:i' }}" style="width:76px"> – <input name="collect_to" value="{{ r.collect_to|time:'H:i' }}" style="width:76px"></td>
+<td><input name="deliver_from" value="{{ r.deliver_from|time:'H:i' }}" style="width:76px"> – <input name="deliver_to" value="{{ r.deliver_to|time:'H:i' }}" style="width:76px"></td><td>{{ r.delivered }}</td>
+<td class="num"><input name="capacity_orders" type="number" min="1" value="{{ r.capacity_orders }}" style="width:80px"></td><td class="num"><input name="cod_confirmation_hours" type="number" min="1" value="{{ r.cod_confirmation_hours }}" style="width:70px"></td>
+<td><input type="checkbox" name="active_{{ r.id }}_{{ forloop.counter0 }}" {% if r.is_active %}checked{% endif %} style="min-height:auto"></td></tr>{% endfor %}
+<tr><td><input type="hidden" name="id" value="new"><input name="code" placeholder="D" style="width:60px"></td><td><input name="name" placeholder="New template"></td>
+<td><input name="collect_from" value="00:00" style="width:76px"> – <input name="collect_to" value="00:00" style="width:76px"></td><td><input name="deliver_from" value="10:00" style="width:76px"> – <input name="deliver_to" value="14:00" style="width:76px"></td><td></td>
+<td class="num"><input name="capacity_orders" type="number" value="20" style="width:80px"></td><td class="num"><input name="cod_confirmation_hours" type="number" value="4" style="width:70px"></td><td><input type="checkbox" name="active_new_{{ rows|length }}" style="min-height:auto"></td></tr></tbody></table>
+<p class="muted">A change applies to deliveries created afterwards. Existing deliveries keep the values they were created with. Leave the last row empty (no code) to add nothing.</p>
+<div class="row"><button class="btn">Save templates</button><a class="btn secondary" href="{% url 'templates_preview' %}">Preview what customers see now</a></div></form>{% endblock %}

@@ -1,0 +1,6 @@
+code,restock,flags_customer,sort,is_active
+customer_refused,true,true,10,true
+customer_not_home,true,false,20,true
+wrong_item,true,false,30,true
+damaged,false,false,40,true
+quality_complaint,false,false,50,true

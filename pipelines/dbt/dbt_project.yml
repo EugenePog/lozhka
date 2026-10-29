@@ -1,0 +1,35 @@
+name: lozhka
+version: "0.1.0"
+config-version: 2
+profile: lozhka
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+models:
+  lozhka:
+    silver:
+      +schema: silver
+      +materialized: incremental
+    gold:
+      serving:
+        +schema: gold
+        +materialized: table
+        +tags: ["hot"]
+      marts:
+        +schema: gold
+        +materialized: table
+        +tags: ["nightly"]
+      reports:
+        +schema: gold
+        +materialized: view
+        +tags: ["nightly"]
+
+seeds:
+  lozhka:
+    +schema: silver
+
+# dbt prefixes custom schema names with the target schema by default; use the name as written.
+# (macros/generate_schema_name.sql)

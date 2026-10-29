@@ -1,0 +1,9 @@
+{% load staff %}<div id="list" hx-get="{% url 'confirm' %}?part=1" hx-trigger="every 15s" hx-swap="outerHTML">
+{% if rows %}<table><thead><tr><th>Order</th><th>Waiting</th><th>Customer</th><th>Delivery</th><th class="num">Total</th><th class="num">Calls</th><th>Flags</th><th></th></tr></thead><tbody>
+{% for r in rows %}<tr class="{% if r.warn %}hl{% endif %}"><td><strong>{{ r.o.order_number }}</strong></td>
+<td>{{ r.waiting|hours_minutes }}{% if r.warn %} <span class="tag bad">deadline {{ r.o.confirm_deadline_at|date:"H:i" }}</span>{% endif %}</td>
+<td>{{ r.o.ship_first_name }} {{ r.o.ship_last_name }}<br><a href="tel:{{ r.o.contact_phone }}">{{ r.o.contact_phone }}</a></td>
+<td>{{ r.o.delivery.delivery_date|date:"D j M" }} {{ r.o.delivery.deliver_from|time:"H:i" }}</td><td class="num">{{ r.o.total_cents|money }}</td><td class="num">{{ r.attempts }}</td>
+<td>{% if r.flags.refused_at_confirmation %}<span class="tag bad">refused at confirmation ×{{ r.flags.refused_at_confirmation }}</span> {% endif %}{% if r.flags.refused_at_delivery %}<span class="tag bad">refused at delivery ×{{ r.flags.refused_at_delivery }}</span>{% endif %}</td>
+<td><a class="btn sm" href="{% url 'confirm_detail' r.o.pk %}">Open</a>{% if r.o.claimed_by %} <span class="muted">{{ r.o.claimed_by.get_username }}</span>{% endif %}</td></tr>{% endfor %}</tbody></table>
+{% else %}<div class="card"><strong>No orders to confirm.</strong><p class="muted">New pay-on-delivery orders appear here.</p></div>{% endif %}</div>

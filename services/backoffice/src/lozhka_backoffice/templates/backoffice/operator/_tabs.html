@@ -1,0 +1,5 @@
+<div class="tabs" id="tabs" hx-get="{% url 'tab_counters' %}?tab={{ tab }}" hx-trigger="every 20s" hx-swap="outerHTML">
+<a href="{% url 'deliveries' %}" class="{% if tab == 'deliveries' %}on{% endif %}">Deliveries <span class="count">{{ counts.deliveries }}</span></a>
+<a href="{% url 'ready' %}" class="{% if tab == 'ready' %}on{% endif %}">Orders ready for delivery <span class="count">{{ counts.ready }}</span></a>
+<a href="{% url 'confirm' %}" class="{% if tab == 'confirm' %}on{% endif %}">Orders to confirm <span class="count {% if counts.confirm %}alert{% endif %}">{{ counts.confirm }}</span></a>
+</div>

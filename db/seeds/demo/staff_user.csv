@@ -1,0 +1,5 @@
+email,password,first_name,roles
+admin@lozhka.example,staff1234,Ada,admin
+operator@lozhka.example,staff1234,Oleg,operator
+store@lozhka.example,staff1234,Sven,storekeeper
+all@lozhka.example,staff1234,Alex,admin;operator;storekeeper

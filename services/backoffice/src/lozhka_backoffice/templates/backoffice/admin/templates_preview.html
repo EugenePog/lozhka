@@ -1,0 +1,5 @@
+{% extends "backoffice/base.html" %}{% block title %}Customer preview{% endblock %}
+{% block content %}<p><a href="{% url 'templates' %}">← Delivery templates</a></p><h1>What customers see now</h1>
+{% if asap %}<p class="sub">As soon as possible: <strong>{{ asap.occurrence.template.name }}</strong>, {{ asap.occurrence.delivery_date|date:"D j M" }} {{ asap.occurrence.template.deliver_from|time:"H:i" }}–{{ asap.occurrence.template.deliver_to|time:"H:i" }}</p>{% endif %}
+<table><thead><tr><th>Date</th><th>Delivery time</th><th>Template</th><th>Order by</th><th>Places left</th></tr></thead><tbody>
+{% for o in offers %}<tr><td>{{ o.occurrence.delivery_date|date:"D j M" }}</td><td>{{ o.occurrence.template.deliver_from|time:"H:i" }}–{{ o.occurrence.template.deliver_to|time:"H:i" }}</td><td>{{ o.occurrence.template.name }}</td><td>{{ o.occurrence.collect_ends_at|date:"D H:i" }}</td><td>{% if o.is_full %}<span class="tag bad">full</span>{% else %}{{ o.places_left }}{% endif %}</td></tr>{% endfor %}</tbody></table>{% endblock %}

@@ -1,0 +1,24 @@
+# Reverse proxy and automatic HTTPS. Replace the example host names.
+shop.lozhka.example {
+	reverse_proxy 127.0.0.1:3010
+}
+
+api.lozhka.example {
+	reverse_proxy 127.0.0.1:8010
+}
+
+# Staff console (operator, storekeeper, admin): its own host name.
+# Start (decided 2026-10-29): reachable from the internet, login credentials only.
+# Open question (docs 07 Q20): later restrict it to a VPN or fixed addresses by enabling the block below.
+office.lozhka.example {
+	# @blocked not remote_ip 203.0.113.10 10.8.0.0/24
+	# respond @blocked 403
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Frame-Options "DENY"
+		Referrer-Policy "same-origin"
+		-Server
+	}
+	# Slow down password guessing (needs a rate-limit plugin or an upstream limit; also set lock-out in Django)
+	reverse_proxy 127.0.0.1:8011
+}

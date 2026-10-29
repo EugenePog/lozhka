@@ -1,0 +1,11 @@
+{% load staff %}<div id="list" hx-get="{% url 'deliveries' %}?part=1&from={{ date_from|date:'Y-m-d' }}&to={{ date_to|date:'Y-m-d' }}&status={{ status }}" hx-trigger="every 20s" hx-swap="outerHTML">
+{% if rows %}<table><thead><tr><th>Number</th><th>Date</th><th>Delivery time</th><th>Status</th><th class="num">Orders</th><th class="num">Items</th><th>Vehicle · driver</th><th class="num">Card terminal</th><th></th></tr></thead><tbody>
+{% for r in rows %}<tr><td><strong>{{ r.d.delivery_number }}</strong></td><td>{{ r.d.delivery_date|date:"D j M" }}</td>
+<td>{{ r.d.deliver_from|time:"H:i" }}–{{ r.d.deliver_to|time:"H:i" }} <span class="muted">{{ r.d.template_name }}</span></td>
+<td><span class="tag {% if r.status == 'open' %}{% elif r.status == 'completed' %}mute{% elif r.status == 'closed' %}warn{% endif %}">{{ r.status_label }}</span></td>
+<td class="num">{{ r.orders }} / {{ r.d.capacity_orders }}</td><td class="num">{{ r.items }}</td>
+<td>{% if r.d.vehicle %}{{ r.d.vehicle.name }} · {{ r.d.driver.name|default:"–" }}{% else %}<span class="muted">not set</span>{% endif %}</td>
+<td class="num">{% if r.terminal_cents %}{{ r.terminal_cents|money }}{% else %}–{% endif %}</td>
+<td><a class="btn sm secondary" href="{% url 'delivery_detail' r.d.pk %}">Open</a></td></tr>{% endfor %}</tbody></table>
+{% else %}<div class="card"><strong>No deliveries yet</strong><p class="muted">A delivery appears when the first order for its time range arrives.</p></div>{% endif %}
+</div>

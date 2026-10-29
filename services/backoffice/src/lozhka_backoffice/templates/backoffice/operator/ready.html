@@ -1,0 +1,12 @@
+{% extends "backoffice/base.html" %}{% load staff %}{% block title %}Orders ready{% endblock %}
+{% block content %}<h1>Operator</h1><p class="sub">Paid orders and confirmed pay-on-delivery orders, grouped by delivery.</p>
+{% include "backoffice/operator/_tabs.html" %}
+{% for g in groups %}<div class="card"><div class="row" style="justify-content:space-between"><div><h2 style="margin:0">{{ g.d.delivery_date|date:"D j M" }} · {{ g.d.deliver_from|time:"H:i" }}–{{ g.d.deliver_to|time:"H:i" }} <span class="muted">{{ g.d.delivery_number }}</span></h2>
+<span class="muted">{{ g.count }} / {{ g.d.capacity_orders }} orders · {{ g.items }} items · {{ g.value|money }} · frozen {{ g.frozen }} · chilled {{ g.chilled }}</span></div>
+<span class="tag warn">collection ends in {{ g.left|hours_minutes }}</span></div>
+<table style="margin-top:10px"><thead><tr><th>Order</th><th>Customer</th><th>Postcode</th><th class="num">Total</th><th>Payment</th><th></th></tr></thead><tbody>
+{% for o in g.orders %}<tr><td><strong>{{ o.order_number }}</strong></td><td>{{ o.ship_first_name }} {{ o.ship_last_name }}</td><td>{{ o.ship_postcode }}</td><td class="num">{{ o.total_cents|money }}</td>
+<td>{% if o.payment_method == 'card_on_delivery' %}<span class="tag warn">Card on delivery {{ o.total_cents|money }}</span>{% else %}<span class="tag">Prepaid</span>{% endif %}</td>
+<td><form method="post" action="{% url 'order_move' o.pk %}" class="row" style="gap:6px">{% csrf_token %}<input type="hidden" name="next" value="ready"><select name="target" aria-label="Move to">{% for t in g.targets %}<option value="{{ t.pk }}">{{ t.delivery_number }} {{ t.delivery_date|date:"j M" }} {{ t.deliver_from|time:"H:i" }}</option>{% endfor %}</select><button class="btn sm secondary">Move</button>
+<a class="btn sm secondary" href="{% url 'delivery_detail' g.d.pk %}">Details</a></form></td></tr>{% endfor %}</tbody></table></div>
+{% empty %}<div class="card"><strong>Nothing is waiting.</strong><p class="muted">Paid orders and confirmed pay-on-delivery orders appear here.</p></div>{% endfor %}{% endblock %}

@@ -1,0 +1,5 @@
+order_number,customer,items,payment_method,template,status
+LZ-10001,demo@lozhka.example,DAI-KEF-1L:6;PAN-GRE-900:4;MEA-DOK-500:5;PRE-GHE-720:3,card_on_delivery,A,pending_confirmation
+LZ-10002,jan@lozhka.example,FRZ-PEL-800:5;FRZ-VAR-500:4;SWE-ALY-100:6,card_on_delivery,A,pending_confirmation
+LZ-10003,demo@lozhka.example,DAI-TVO-400:6;FIS-SEL-500:4;BAK-BOR-700:4;DRK-TEA-100:3,ideal,B,paid
+LZ-10004,jan@lozhka.example,MEA-KRA-400:5;PAN-SOL-1L:4;PAN-RIC-800:4;SWE-HAL-350:3,card,C,paid

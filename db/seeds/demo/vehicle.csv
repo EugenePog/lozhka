@@ -1,0 +1,3 @@
+name,plate,capacity_orders,has_cooling,fuel_type,consumption_l_per_100km,is_active
+Van 1,VK-123-X,20,true,diesel,9.50,true
+Van 2,VK-456-Y,15,false,diesel,8.80,true

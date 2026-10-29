@@ -1,0 +1,31 @@
+[project]
+name = "lozhka"
+version = "0.1.0"
+description = "LOZHKA online shop platform (mono-repo)"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.uv.workspace]
+members = ["libs/*", "services/*", "pipelines"]
+
+# Workspace members refer to each other by name; resolve them locally.
+[tool.uv.sources]
+lozhka-common = { workspace = true }
+lozhka-notify = { workspace = true }
+lozhka-api = { workspace = true }
+lozhka-backoffice = { workspace = true }
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-django>=4.9", "ruff>=0.6"]
+
+[tool.pytest.ini_options]
+testpaths = ["libs", "services", "pipelines"]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+pythonpath = ["services/api/src", "services/api/tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

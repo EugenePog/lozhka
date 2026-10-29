@@ -1,0 +1,33 @@
+receiving,product,supplier_lot_code,qty_expected,qty_received,qty_rejected,best_before
+Baltic Import Sp. z o.o.|BI-2026-0188,DAI-KEF-1L,LOT--1L-A,32,32,0,+18d
+Baltic Import Sp. z o.o.|BI-2026-0188,DAI-KEF-1L,LOT--1L-B,20,20,0,+7d
+Baltic Import Sp. z o.o.|BI-2026-0188,DAI-RYA-500,LOT-500-A,32,32,0,+18d
+Baltic Import Sp. z o.o.|BI-2026-0188,DAI-TVO-400,LOT-400-A,32,32,0,+15d
+Baltic Import Sp. z o.o.|BI-2026-0188,DAI-SMT-400,LOT-400-A,32,32,0,+18d
+Baltic Import Sp. z o.o.|BI-2026-0188,DAI-SYR-200,LOT-200-A,6,6,0,+87d
+Baltic Import Sp. z o.o.|BI-2026-0188,MEA-DOK-500,LOT-500-A,32,32,0,+27d
+Baltic Import Sp. z o.o.|BI-2026-0188,MEA-KRA-400,LOT-400-A,32,32,0,+27d
+Eastern Foods Wholesale BV|EFW-2026-0412,FIS-SEL-500,LOT-500-A,32,32,0,+57d
+Eastern Foods Wholesale BV|EFW-2026-0412,FIS-SHP-250,LOT-250-A,12,12,0,+2d
+Frost Logistics BV|FL-2026-0077,FRZ-PEL-800,LOT-800-A,26,26,0,+270d
+Frost Logistics BV|FL-2026-0077,FRZ-VAR-500,LOT-500-A,26,26,0,+270d
+Frost Logistics BV|FL-2026-0077,FRZ-PEL-1K,LOT--1K-A,26,26,0,+270d
+Eastern Foods Wholesale BV|EFW-2026-0412,BAK-BOR-700,LOT-700-A,32,32,2,+7d
+Eastern Foods Wholesale BV|EFW-2026-0412,BAK-BAR-300,LOT-300-A,32,32,0,+120d
+Eastern Foods Wholesale BV|EFW-2026-0412,PAN-GRE-900,LOT-900-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,PAN-RIC-800,LOT-800-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,PAN-PAS-400,LOT-400-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,PAN-SOL-1L,LOT--1L-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,PAN-MAY-400,LOT-400-A,32,32,0,+180d
+Eastern Foods Wholesale BV|EFW-2026-0412,PAN-TKM-480,LOT-480-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,PRE-GHE-720,LOT-720-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,PRE-SAU-800,LOT-800-A,32,32,0,+57d
+Eastern Foods Wholesale BV|EFW-2026-0412,PRE-BEE-450,LOT-450-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,SWE-ALY-100,LOT-100-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,SWE-ZEF-250,LOT-250-A,32,32,0,+120d
+Eastern Foods Wholesale BV|EFW-2026-0412,SWE-HAL-350,LOT-350-A,32,32,0,+180d
+Eastern Foods Wholesale BV|EFW-2026-0412,DRK-KVA-2L,LOT--2L-A,32,32,0,+120d
+Eastern Foods Wholesale BV|EFW-2026-0412,DRK-COM-1L,LOT--1L-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,DRK-TEA-100,LOT-100-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,DRK-TEA-25,LOT--25-A,32,32,0,+365d
+Eastern Foods Wholesale BV|EFW-2026-0412,DRK-VOD-500,LOT-500-A,32,32,0,+365d

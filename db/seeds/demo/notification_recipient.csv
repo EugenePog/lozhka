@@ -1,0 +1,2 @@
+name,channel,address,topics,is_active
+Shop owner,email,owner@lozhka.example,"[""expiry_digest"",""new_order"",""pipeline_alert""]",true

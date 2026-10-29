@@ -1,0 +1,14 @@
+# Copy to profiles.yml (not committed) or point DBT_PROFILES_DIR at a folder holding it.
+# The pipeline role needs CREATE on schemas silver and gold (granted in db/migrations).
+lozhka:
+  target: local
+  outputs:
+    local:
+      type: postgres
+      host: "{{ env_var('DBT_HOST', 'localhost') }}"
+      port: "{{ env_var('DBT_PORT', '5432') | as_number }}"
+      user: lozhka_pipeline
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      dbname: lozhka
+      schema: silver          # default; each model folder overrides it
+      threads: 4

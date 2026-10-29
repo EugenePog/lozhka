@@ -1,0 +1,32 @@
+sku,slug,category,brand,status,unit_type,net_content_value,net_content_unit,storage_type,storage_temp_min_c,storage_temp_max_c,shelf_life_days_default,min_shelf_life_days_for_sale,vat_rate,country_of_origin,is_alcohol,age_restricted,low_stock_threshold,safety_stock_qty,is_orderable
+DAI-KEF-1L,dai-kef-1l,kefir-yoghurt,Dobryi Dom,active,piece,1000,ml,chilled,,,21,3,reduced_9,PL,false,false,6,0,true
+DAI-RYA-500,dai-rya-500,kefir-yoghurt,Dobryi Dom,active,piece,500,ml,chilled,,,21,3,reduced_9,PL,false,false,6,0,true
+DAI-TVO-400,dai-tvo-400,cheese-quark,Volga Fresh,active,piece,400,g,chilled,,,18,3,reduced_9,PL,false,false,4,0,true
+DAI-SMT-400,dai-smt-400,cheese-quark,Volga Fresh,active,piece,400,g,chilled,,,21,3,reduced_9,PL,false,false,4,0,true
+DAI-SYR-200,dai-syr-200,cheese-quark,Karpaty,active,piece,200,g,chilled,,,90,3,reduced_9,PL,false,false,5,0,true
+MEA-DOK-500,mea-dok-500,sausages,Baltic Gold,active,piece,500,g,chilled,,,30,3,reduced_9,PL,false,false,3,0,true
+MEA-KRA-400,mea-kra-400,sausages,Baltic Gold,active,piece,400,g,chilled,,,30,3,reduced_9,PL,false,false,3,0,true
+FIS-SEL-500,fis-sel-500,fish,Chernomor,active,piece,500,g,chilled,,,60,3,reduced_9,LV,false,false,4,0,true
+FIS-SHP-250,fis-shp-250,fish,Chernomor,active,piece,250,g,chilled,,,14,3,reduced_9,LV,false,false,3,0,true
+FRZ-PEL-800,frz-pel-800,dumplings,Sibirskaya Zemlya,active,piece,800,g,frozen,,,270,14,reduced_9,RU,false,false,6,0,true
+FRZ-VAR-500,frz-var-500,dumplings,Sibirskaya Zemlya,active,piece,500,g,frozen,,,270,14,reduced_9,UA,false,false,5,0,true
+FRZ-PEL-1K,frz-pel-1k,dumplings,Sibirskaya Zemlya,active,piece,1000,g,frozen,,,270,14,reduced_9,RU,false,false,5,0,true
+BAK-BOR-700,bak-bor-700,bakery,Zolotaya Niva,active,piece,700,g,ambient,,,7,0,reduced_9,LV,false,false,4,0,true
+BAK-BAR-300,bak-bar-300,bakery,Zolotaya Niva,active,piece,300,g,ambient,,,120,0,reduced_9,PL,false,false,4,0,true
+PAN-GRE-900,pan-gre-900,grains-pasta,Altai Herbs,active,piece,900,g,ambient,,,540,0,reduced_9,PL,false,false,8,0,true
+PAN-RIC-800,pan-ric-800,grains-pasta,Altai Herbs,active,piece,800,g,ambient,,,540,0,reduced_9,RU,false,false,5,0,true
+PAN-PAS-400,pan-pas-400,grains-pasta,Zolotaya Niva,active,piece,400,g,ambient,,,540,0,reduced_9,PL,false,false,5,0,true
+PAN-SOL-1L,pan-sol-1l,oils-sauces,Zolotaya Niva,active,piece,1000,ml,ambient,,,365,0,reduced_9,UA,false,false,4,0,true
+PAN-MAY-400,pan-may-400,oils-sauces,Zolotaya Niva,active,piece,400,ml,ambient,,,180,0,reduced_9,PL,false,false,4,0,true
+PAN-TKM-480,pan-tkm-480,oils-sauces,Karpaty,active,piece,480,g,ambient,,,540,0,reduced_9,GE,false,false,3,0,true
+PRE-GHE-720,pre-ghe-720,preserves,Karpaty,active,piece,720,g,ambient,,,720,0,reduced_9,PL,false,false,5,0,true
+PRE-SAU-800,pre-sau-800,preserves,Karpaty,active,piece,800,g,chilled,,,60,3,reduced_9,PL,false,false,4,0,true
+PRE-BEE-450,pre-bee-450,preserves,Karpaty,active,piece,450,g,ambient,,,720,0,reduced_9,PL,false,false,4,0,true
+SWE-ALY-100,swe-aly-100,sweets,Zolotaya Niva,active,piece,100,g,ambient,,,365,0,reduced_9,RU,false,false,6,0,true
+SWE-ZEF-250,swe-zef-250,sweets,Zolotaya Niva,active,piece,250,g,ambient,,,120,0,reduced_9,RU,false,false,4,0,true
+SWE-HAL-350,swe-hal-350,sweets,Zolotaya Niva,active,piece,350,g,ambient,,,180,0,reduced_9,RU,false,false,3,0,true
+DRK-KVA-2L,drk-kva-2l,drinks,Chernomor,active,piece,2000,ml,ambient,,,120,0,reduced_9,PL,false,false,6,0,true
+DRK-COM-1L,drk-com-1l,drinks,Chernomor,active,piece,1000,ml,ambient,,,365,0,reduced_9,PL,false,false,3,0,true
+DRK-TEA-100,drk-tea-100,tea-coffee,Altai Herbs,active,piece,100,g,ambient,,,720,0,reduced_9,RU,false,false,3,0,true
+DRK-TEA-25,drk-tea-25,tea-coffee,Altai Herbs,active,piece,50,g,ambient,,,720,0,reduced_9,RU,false,false,3,0,true
+DRK-VOD-500,drk-vod-500,drinks,Chernomor,active,piece,500,ml,ambient,,,1825,0,standard_21,PL,true,true,3,0,true

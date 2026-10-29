@@ -1,0 +1,13 @@
+{% extends "backoffice/base.html" %}{% load staff %}{% block title %}Close {{ d.delivery_number }}{% endblock %}
+{% block content %}<p><a href="{% url 'delivery_detail' d.pk %}">← {{ d.delivery_number }}</a></p><h1>Close delivery {{ d.delivery_number }}</h1>
+<p class="sub">Record what was delivered, what came back and why. Returned items go back to stock unless the reason is a write-off reason.</p>
+<form method="post">{% csrf_token %}{% for s in stops %}{% with o=s.order %}<div class="card"><div class="row" style="justify-content:space-between"><div><strong>{{ s.sequence }}. {{ o.order_number }}</strong> · {{ o.ship_first_name }} {{ o.ship_last_name }} · {{ o.ship_street }} {{ o.ship_house_number }}</div>
+{% if o.payment_method == 'card_on_delivery' %}<span class="tag warn">Card terminal {{ o.total_cents|money }}</span>{% else %}<span class="tag">Prepaid</span>{% endif %}</div>
+<div class="row"><div><label>Outcome</label><select name="o{{ o.id }}_outcome"><option value="delivered">Delivered in full</option><option value="returns">Delivered with returns</option><option value="not_delivered">Not delivered</option></select></div>
+{% if o.payment_method == 'card_on_delivery' %}<label style="display:flex;gap:8px;align-items:center;margin-top:28px"><input type="checkbox" name="o{{ o.id }}_paid" style="min-height:auto"> Payment taken on the card terminal</label>{% endif %}
+<div><label>Reason if not delivered</label><select name="o{{ o.id }}_failure"><option value="">–</option>{% for r in reasons %}<option value="{{ r.code }}">{{ r.code }}</option>{% endfor %}</select></div>
+<label style="display:flex;gap:8px;align-items:center;margin-top:28px"><input type="checkbox" name="o{{ o.id }}_flag" style="min-height:auto"> Flag customer (refused at delivery)</label></div>
+<table style="margin-top:8px"><thead><tr><th>Item</th><th class="num">Ordered</th><th>Returned qty</th><th>Reason</th><th>Note</th></tr></thead><tbody>
+{% for l in o.lines.all %}<tr><td>{{ l.name_snapshot }}</td><td class="num">{{ l.qty|qty }}</td><td><input type="number" step="any" min="0" max="{{ l.qty|qty }}" name="o{{ o.id }}_ret_{{ l.id }}" style="width:90px"></td>
+<td><select name="o{{ o.id }}_reason_{{ l.id }}"><option value="">–</option>{% for r in reasons %}<option value="{{ r.code }}">{{ r.code }}{% if not r.restock %} (write-off){% endif %}</option>{% endfor %}</select></td><td><input name="o{{ o.id }}_note_{{ l.id }}"></td></tr>{% endfor %}</tbody></table></div>{% endwith %}{% endfor %}
+<div class="row"><button class="btn secondary" name="submit" value="draft">Save draft</button><button class="btn" name="submit" value="close">Close delivery</button></div></form>{% endblock %}

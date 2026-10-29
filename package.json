@@ -1,0 +1,10 @@
+{
+  "name": "lozhka-js",
+  "private": true,
+  "description": "TypeScript workspace: web site, mobile app, shared packages",
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "lint": "pnpm -r --if-present lint",
+    "test": "pnpm -r --if-present test"
+  }
+}

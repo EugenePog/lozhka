@@ -1,0 +1,14 @@
+key,value,description
+min_order_cents,5000,Minimum order value in cents (W06 shows the shortfall)
+reservation_ttl_min,15,Minutes stock stays reserved while the customer pays online
+cod_enabled,true,Offer card payment on delivery at checkout
+delivery_horizon_days,3,How many days ahead customers can choose a delivery
+service_time_s,180,Planner: seconds spent at each stop
+fuel_price_cents_per_l,190,Planner: fuel price in cents per litre
+driver_cost_cents_per_h,2200,Planner: driver cost in cents per hour
+staff_session_minutes,60,Staff console idle timeout
+order_claim_minutes,5,How long an operator holds an order while calling
+cod_warn_minutes,30,Highlight pay-on-delivery orders when the confirmation deadline is this close
+shop_name,"""Lozhka""",Shown in e-mails and the footer
+support_email,"""hello@lozhka.example""",Customer support address
+support_phone,"""+31 20 000 0000""",Customer support phone number

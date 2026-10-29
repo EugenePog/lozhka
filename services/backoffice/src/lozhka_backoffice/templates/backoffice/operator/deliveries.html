@@ -1,0 +1,8 @@
+{% extends "backoffice/base.html" %}{% block title %}Deliveries{% endblock %}
+{% block content %}<h1>Operator</h1><p class="sub">Lists refresh by themselves every 20 seconds.</p>
+{% include "backoffice/operator/_tabs.html" %}
+<form class="row card" method="get"><div><label for="f">From</label><input id="f" type="date" name="from" value="{{ date_from|date:'Y-m-d' }}"></div>
+<div><label for="t">To</label><input id="t" type="date" name="to" value="{{ date_to|date:'Y-m-d' }}"></div>
+<div><label for="s">Status</label><select id="s" name="status"><option value="">All</option>{% for k, v in statuses.items %}<option value="{{ k }}" {% if k == status %}selected{% endif %}>{{ v }}</option>{% endfor %}</select></div>
+<button class="btn" type="submit">Filter</button></form>
+{% include "backoffice/operator/deliveries_list.html" %}{% endblock %}

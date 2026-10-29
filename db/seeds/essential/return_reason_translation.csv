@@ -1,0 +1,16 @@
+reason,lang,name
+customer_refused,nl,Klant weigerde
+customer_refused,en,Customer refused
+customer_refused,ru,Клиент отказался
+customer_not_home,nl,Klant niet thuis
+customer_not_home,en,Customer not home
+customer_not_home,ru,Клиента нет дома
+wrong_item,nl,Verkeerd product
+wrong_item,en,Wrong item
+wrong_item,ru,Не тот товар
+damaged,nl,Beschadigd
+damaged,en,Damaged
+damaged,ru,Повреждён
+quality_complaint,nl,Kwaliteitsklacht
+quality_complaint,en,Quality complaint
+quality_complaint,ru,Претензия к качеству

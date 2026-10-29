@@ -1,0 +1,4 @@
+scope,scope_ref,warn_days,markdown_suggestion_pct
+global,,"[14, 7, 3, 1]",30
+storage_type,chilled,"[5, 3, 1]",30
+storage_type,frozen,"[30, 14, 7]",20

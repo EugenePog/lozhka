@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: bronze
+    tables:
+      - name: app_change_log
+        description: Every insert, update and delete on app tables (trigger-captured).
+        loaded_at_field: changed_at
+        freshness:
+          warn_after: {count: 6, period: hour}
+        columns:
+          - name: change_id
+            tests: [unique, not_null]
+      - name: supplier_file
+      - name: supplier_file_row
+      - name: payment_event
+
+  - name: silver_python
+    description: Silver tables written by Python (module M2 and the geocoder), not by dbt.
+    schema: silver
+    tables:
+      - name: supplier_delivery
+      - name: supplier_delivery_line
+      - name: supplier_delivery_issue
+      - name: address_geocode
+      - name: forecast_run
+      - name: demand_forecast
+      - name: forecast_accuracy

@@ -1,0 +1,15 @@
+[project]
+name = "lozhka-pipelines"
+version = "0.1.0"
+description = "M7 data pipelines: bronze loaders and pipeline task wiring"
+requires-python = ">=3.12"
+dependencies = [
+  "lozhka-common",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lozhka_pipelines"]

@@ -1,0 +1,25 @@
+slug,lang,kind,title,body_markdown,sort,published
+home-hero,nl,hero,"Smaken van thuis, aan huis bezorgd",Verse en diepvries producten uit Oost-Europa.,0,true
+home-hero,en,hero,"Taste of home, delivered",Fresh and frozen food from Eastern Europe.,0,true
+home-hero,ru,hero,Вкус дома с доставкой,Свежие и замороженные продукты из Восточной Европы.,0,true
+usp-delivery,nl,usp,Bezorging in een dagdeel,Kies zelf wanneer wij langskomen.,10,true
+usp-delivery,en,usp,Delivery in a time range,You choose when we come by.,10,true
+usp-delivery,ru,usp,Доставка в удобное время,"Вы выбираете, когда мы приедем.",10,true
+usp-fresh,nl,usp,Vers en traceerbaar,Elke partij is gecontroleerd bij ontvangst.,20,true
+usp-fresh,en,usp,Fresh and traceable,Every batch is checked on arrival.,20,true
+usp-fresh,ru,usp,Свежее и прослеживаемое,Каждая партия проверяется при приёмке.,20,true
+usp-pay,nl,usp,Betaal bij de deur,Pinnen bij levering is mogelijk.,30,true
+usp-pay,en,usp,Pay at the door,Card payment on delivery is available.,30,true
+usp-pay,ru,usp,Оплата при получении,Оплата картой при доставке.,30,true
+page-about,nl,page,Over Lozhka,Lozhka is een online winkel voor producten uit Oost-Europa.,40,true
+page-about,en,page,About Lozhka,Lozhka is an online shop for Eastern European food.,40,true
+page-about,ru,page,О Lozhka,Lozhka — интернет-магазин продуктов из Восточной Европы.,40,true
+page-delivery,nl,page,Bezorging,Wij bezorgen in Amsterdam en Utrecht. Kies een tijdvak bij het afrekenen.,50,true
+page-delivery,en,page,Delivery,We deliver in Amsterdam and Utrecht. Pick a time range at checkout.,50,true
+page-delivery,ru,page,Доставка,Мы доставляем по Амстердаму и Утрехту. Выберите интервал при оформлении.,50,true
+page-terms,nl,page,Algemene voorwaarden,Voorbeeldtekst: vervang door de definitieve voorwaarden.,60,true
+page-terms,en,page,Terms and conditions,Placeholder text: replace with the final terms.,60,true
+page-terms,ru,page,Условия,Текст-заглушка: замените окончательными условиями.,60,true
+page-privacy,nl,page,Privacyverklaring,Voorbeeldtekst: vervang door de definitieve privacyverklaring.,70,true
+page-privacy,en,page,Privacy statement,Placeholder text: replace with the final privacy statement.,70,true
+page-privacy,ru,page,Политика конфиденциальности,Текст-заглушка: замените окончательной политикой.,70,true

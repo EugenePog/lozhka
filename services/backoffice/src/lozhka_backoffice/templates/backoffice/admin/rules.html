@@ -1,0 +1,8 @@
+{% extends "backoffice/base.html" %}{% block title %}Delivery rules{% endblock %}
+{% block content %}<h1>Delivery rules</h1><p class="sub">Minimum order, pay on delivery, delivery areas and fees.</p>
+<form method="post">{% csrf_token %}<div class="card"><div class="grid3">{% for v in values %}<div><label for="{{ v.key }}">{{ v.label }}</label>
+{% if v.kind == 'bool' %}<label style="display:flex;gap:8px;align-items:center"><input id="{{ v.key }}" type="checkbox" name="{{ v.key }}" {% if v.value %}checked{% endif %} style="min-height:auto"> On</label>{% else %}<input id="{{ v.key }}" name="{{ v.key }}" type="number" min="0" value="{{ v.value }}">{% endif %}</div>{% endfor %}</div></div>
+{% for z in zones %}<div class="card"><h2 style="margin-top:0">{{ z.z.name }}</h2><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="zone_{{ z.z.id }}_active" {% if z.z.is_active %}checked{% endif %} style="min-height:auto"> Active</label>
+<div class="grid2"><div><label for="r{{ z.z.id }}">Postcode ranges (first four digits), comma separated</label><textarea id="r{{ z.z.id }}" name="zone_{{ z.z.id }}_ranges">{{ z.ranges }}</textarea></div>
+<div><label for="f{{ z.z.id }}">Fee tiers: min order cents, max (empty = no limit), fee cents. One per line.</label><textarea id="f{{ z.z.id }}" name="zone_{{ z.z.id }}_fees">{{ z.fees }}</textarea></div></div></div>{% endfor %}
+<button class="btn">Save rules</button></form>{% endblock %}

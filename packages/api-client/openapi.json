@@ -1,0 +1,2942 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Lozhka public API",
+    "version": "1",
+    "description": "Catalogue, cart, delivery slots, checkout and customer account. Money is integer cents."
+  },
+  "paths": {
+    "/api/v1/categories": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_categories",
+        "summary": "Category tree",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/products": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_products",
+        "summary": "Browse and search products",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "offers",
+            "schema": {
+              "default": false,
+              "title": "Offers",
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tag"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "in_stock",
+            "schema": {
+              "default": false,
+              "title": "In Stock",
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "default": "relevance",
+              "title": "Sort",
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "title": "Page",
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "default": 24,
+              "title": "Page Size",
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductList"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/products/suggest": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_suggest",
+        "summary": "Search-as-you-type",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "title": "Q",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/products/{slug}": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_product",
+        "summary": "Product page",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "title": "Slug",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetail"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/products/{sku}/notify": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_catalog_notify",
+        "summary": "Tell me when it is back",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sku",
+            "schema": {
+              "title": "Sku",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "catalogue"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotifyIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/newsletter": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_catalog_newsletter",
+        "summary": "Subscribe to the offers e-mail",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "catalogue"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotifyIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/home": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_home",
+        "summary": "Home page data",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HomeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/settings": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_settings_view",
+        "summary": "Public settings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/pages/{slug}": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_catalog_page",
+        "summary": "Help and legal pages",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "title": "Slug",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "catalogue"
+        ]
+      }
+    },
+    "/api/v1/cart": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_cart_get_cart_view",
+        "summary": "Current cart",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ]
+      }
+    },
+    "/api/v1/cart/items": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_cart_add_item",
+        "summary": "Add to cart (adds to the quantity already there)",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartItemIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/cart/items/{sku}": {
+      "put": {
+        "operationId": "lozhka_api_api_routers_cart_set_item",
+        "summary": "Set the quantity (0 removes the line)",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sku",
+            "schema": {
+              "title": "Sku",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QtyIn"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "operationId": "lozhka_api_api_routers_cart_remove_item",
+        "summary": "Remove a line",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sku",
+            "schema": {
+              "title": "Sku",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ]
+      }
+    },
+    "/api/v1/cart/promo": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_cart_apply_promo",
+        "summary": "Apply or clear a promo code",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PromoIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/delivery/offers": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_delivery_offers",
+        "summary": "Zone check and delivery slots for a postcode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "postcode",
+            "schema": {
+              "default": "",
+              "title": "Postcode",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeliveryOffersOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "delivery"
+        ]
+      }
+    },
+    "/api/v1/checkout": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_orders_place",
+        "summary": "Place the order",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacedOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/orders/{number}": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_orders_order_detail",
+        "summary": "Order confirmation / tracking (guest: token)",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "number",
+            "schema": {
+              "title": "Number",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "token",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Token"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/api/v1/orders/{number}/cancel": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_orders_cancel",
+        "summary": "Customer cancels while the delivery is still open",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "number",
+            "schema": {
+              "title": "Number",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "token",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Token"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/api/v1/payments/test/{number}/complete": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_orders_pay_test",
+        "summary": "STUB payment page result (iDEAL/card provider replaces this later)",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "number",
+            "schema": {
+              "title": "Number",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PayResultIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/me/orders": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_orders_my_orders",
+        "summary": "My orders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/OrderSummary"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/api/v1/auth/csrf": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_account_csrf",
+        "summary": "Sets the CSRF cookie; call once when the app loads",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_account_me",
+        "summary": "Signed-in customer or 401",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_account_register",
+        "summary": "Create an account",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_account_do_login",
+        "summary": "Sign in",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_account_do_logout",
+        "summary": "Sign out",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/auth/google": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_account_google",
+        "summary": "STUB",
+        "parameters": [],
+        "responses": {
+          "501": {
+            "description": "Not Implemented",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/auth/apple": {
+      "post": {
+        "operationId": "lozhka_api_api_routers_account_apple",
+        "summary": "STUB",
+        "parameters": [],
+        "responses": {
+          "501": {
+            "description": "Not Implemented",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me": {
+      "patch": {
+        "operationId": "lozhka_api_api_routers_account_update_me",
+        "summary": "Update my details",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MeIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/me/addresses": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_account_addresses",
+        "summary": "My addresses",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AddressOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      },
+      "post": {
+        "operationId": "lozhka_api_api_routers_account_add_address",
+        "summary": "Add an address",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/me/addresses/{address_id}": {
+      "put": {
+        "operationId": "lozhka_api_api_routers_account_edit_address",
+        "summary": "Change an address",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address_id",
+            "schema": {
+              "title": "Address Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressOut"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressIn"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "operationId": "lozhka_api_api_routers_account_delete_address",
+        "summary": "Delete an address",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address_id",
+            "schema": {
+              "title": "Address Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/favourites": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_account_favourites",
+        "summary": "SKUs of my favourites",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/favourites/products": {
+      "get": {
+        "operationId": "lozhka_api_api_routers_account_favourite_products",
+        "summary": "My favourites as product cards",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "schema": {
+              "default": "nl",
+              "title": "Lang",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProductCard"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    },
+    "/api/v1/me/favourites/{sku}": {
+      "put": {
+        "operationId": "lozhka_api_api_routers_account_add_favourite",
+        "summary": "Add a favourite",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sku",
+            "schema": {
+              "title": "Sku",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      },
+      "delete": {
+        "operationId": "lozhka_api_api_routers_account_remove_favourite",
+        "summary": "Remove a favourite",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sku",
+            "schema": {
+              "title": "Sku",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "account"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CategoryOut": {
+        "properties": {
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "parent_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Slug"
+          },
+          "kind": {
+            "default": "regular",
+            "title": "Kind",
+            "type": "string"
+          },
+          "product_count": {
+            "default": 0,
+            "title": "Product Count",
+            "type": "integer"
+          },
+          "children": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/CategoryOut"
+            },
+            "title": "Children",
+            "type": "array"
+          }
+        },
+        "required": [
+          "slug",
+          "name"
+        ],
+        "title": "CategoryOut",
+        "type": "object"
+      },
+      "ProductQuery": {
+        "properties": {
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "q": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Q"
+          },
+          "offers": {
+            "default": false,
+            "title": "Offers",
+            "type": "boolean"
+          },
+          "tag": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tag"
+          },
+          "in_stock": {
+            "default": false,
+            "title": "In Stock",
+            "type": "boolean"
+          },
+          "sort": {
+            "default": "relevance",
+            "title": "Sort",
+            "type": "string"
+          },
+          "page": {
+            "default": 1,
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "default": 24,
+            "title": "Page Size",
+            "type": "integer"
+          },
+          "lang": {
+            "default": "nl",
+            "title": "Lang",
+            "type": "string"
+          }
+        },
+        "title": "ProductQuery",
+        "type": "object"
+      },
+      "ProductCard": {
+        "properties": {
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "brand": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand"
+          },
+          "unit_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Label"
+          },
+          "price_cents": {
+            "title": "Price Cents",
+            "type": "integer"
+          },
+          "regular_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Regular Cents"
+          },
+          "is_discounted": {
+            "default": false,
+            "title": "Is Discounted",
+            "type": "boolean"
+          },
+          "unit_price_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Price Cents"
+          },
+          "unit_price_per": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Price Per"
+          },
+          "tags": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "stock_status": {
+            "default": "in_stock",
+            "title": "Stock Status",
+            "type": "string"
+          },
+          "max_qty": {
+            "default": 0,
+            "title": "Max Qty",
+            "type": "integer"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          },
+          "category_slug": {
+            "default": "",
+            "title": "Category Slug",
+            "type": "string"
+          },
+          "is_favourite": {
+            "default": false,
+            "title": "Is Favourite",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "sku",
+          "slug",
+          "name",
+          "price_cents"
+        ],
+        "title": "ProductCard",
+        "type": "object"
+      },
+      "ProductList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ProductCard"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "page": {
+            "title": "Page",
+            "type": "integer"
+          },
+          "pages": {
+            "title": "Pages",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "page",
+          "pages"
+        ],
+        "title": "ProductList",
+        "type": "object"
+      },
+      "ProductDetail": {
+        "properties": {
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "brand": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Brand"
+          },
+          "unit_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Label"
+          },
+          "price_cents": {
+            "title": "Price Cents",
+            "type": "integer"
+          },
+          "regular_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Regular Cents"
+          },
+          "is_discounted": {
+            "default": false,
+            "title": "Is Discounted",
+            "type": "boolean"
+          },
+          "unit_price_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Price Cents"
+          },
+          "unit_price_per": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Price Per"
+          },
+          "tags": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "stock_status": {
+            "default": "in_stock",
+            "title": "Stock Status",
+            "type": "string"
+          },
+          "max_qty": {
+            "default": 0,
+            "title": "Max Qty",
+            "type": "integer"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          },
+          "category_slug": {
+            "default": "",
+            "title": "Category Slug",
+            "type": "string"
+          },
+          "is_favourite": {
+            "default": false,
+            "title": "Is Favourite",
+            "type": "boolean"
+          },
+          "short_description": {
+            "default": "",
+            "title": "Short Description",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "title": "Description",
+            "type": "string"
+          },
+          "ingredients": {
+            "default": "",
+            "title": "Ingredients",
+            "type": "string"
+          },
+          "storage_instructions": {
+            "default": "",
+            "title": "Storage Instructions",
+            "type": "string"
+          },
+          "country_of_origin": {
+            "default": "",
+            "title": "Country Of Origin",
+            "type": "string"
+          },
+          "storage_type": {
+            "default": "ambient",
+            "title": "Storage Type",
+            "type": "string"
+          },
+          "category_path": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Category Path",
+            "type": "array"
+          },
+          "images": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Images",
+            "type": "array"
+          },
+          "allergens": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Allergens",
+            "type": "array"
+          },
+          "nutrition": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nutrition"
+          },
+          "vat_rate_pct": {
+            "default": 9,
+            "title": "Vat Rate Pct",
+            "type": "number"
+          },
+          "related": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductCard"
+            },
+            "title": "Related",
+            "type": "array"
+          }
+        },
+        "required": [
+          "sku",
+          "slug",
+          "name",
+          "price_cents"
+        ],
+        "title": "ProductDetail",
+        "type": "object"
+      },
+      "NotifyIn": {
+        "properties": {
+          "email": {
+            "default": "",
+            "title": "Email",
+            "type": "string"
+          },
+          "lang": {
+            "default": "nl",
+            "title": "Lang",
+            "type": "string"
+          }
+        },
+        "title": "NotifyIn",
+        "type": "object"
+      },
+      "ContentOut": {
+        "properties": {
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "body_markdown": {
+            "title": "Body Markdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "kind",
+          "title",
+          "body_markdown"
+        ],
+        "title": "ContentOut",
+        "type": "object"
+      },
+      "HomeOut": {
+        "properties": {
+          "hero": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ContentOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "usps": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ContentOut"
+            },
+            "title": "Usps",
+            "type": "array"
+          },
+          "categories": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/CategoryOut"
+            },
+            "title": "Categories",
+            "type": "array"
+          },
+          "bestsellers": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductCard"
+            },
+            "title": "Bestsellers",
+            "type": "array"
+          },
+          "new_items": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductCard"
+            },
+            "title": "New Items",
+            "type": "array"
+          },
+          "offers": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ProductCard"
+            },
+            "title": "Offers",
+            "type": "array"
+          },
+          "settings": {
+            "additionalProperties": true,
+            "default": {},
+            "title": "Settings",
+            "type": "object"
+          }
+        },
+        "title": "HomeOut",
+        "type": "object"
+      },
+      "CartLineOut": {
+        "properties": {
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "unit_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Label"
+          },
+          "qty": {
+            "title": "Qty",
+            "type": "number"
+          },
+          "unit_price_cents": {
+            "title": "Unit Price Cents",
+            "type": "integer"
+          },
+          "line_total_cents": {
+            "title": "Line Total Cents",
+            "type": "integer"
+          },
+          "stock_status": {
+            "title": "Stock Status",
+            "type": "string"
+          },
+          "max_qty": {
+            "title": "Max Qty",
+            "type": "integer"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          },
+          "is_discounted": {
+            "default": false,
+            "title": "Is Discounted",
+            "type": "boolean"
+          },
+          "problem": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Problem"
+          }
+        },
+        "required": [
+          "sku",
+          "slug",
+          "name",
+          "qty",
+          "unit_price_cents",
+          "line_total_cents",
+          "stock_status",
+          "max_qty"
+        ],
+        "title": "CartLineOut",
+        "type": "object"
+      },
+      "CartOut": {
+        "properties": {
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/CartLineOut"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "item_count": {
+            "title": "Item Count",
+            "type": "integer"
+          },
+          "subtotal_cents": {
+            "title": "Subtotal Cents",
+            "type": "integer"
+          },
+          "discount_cents": {
+            "title": "Discount Cents",
+            "type": "integer"
+          },
+          "promo_code": {
+            "default": "",
+            "title": "Promo Code",
+            "type": "string"
+          },
+          "promo_error": {
+            "default": "",
+            "title": "Promo Error",
+            "type": "string"
+          },
+          "min_order_cents": {
+            "title": "Min Order Cents",
+            "type": "integer"
+          },
+          "shortfall_cents": {
+            "title": "Shortfall Cents",
+            "type": "integer"
+          },
+          "free_delivery_hint_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Free Delivery Hint Cents"
+          }
+        },
+        "required": [
+          "lines",
+          "item_count",
+          "subtotal_cents",
+          "discount_cents",
+          "min_order_cents",
+          "shortfall_cents"
+        ],
+        "title": "CartOut",
+        "type": "object"
+      },
+      "CartItemIn": {
+        "properties": {
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "qty": {
+            "default": 1,
+            "title": "Qty",
+            "type": "number"
+          }
+        },
+        "required": [
+          "sku"
+        ],
+        "title": "CartItemIn",
+        "type": "object"
+      },
+      "QtyIn": {
+        "properties": {
+          "qty": {
+            "title": "Qty",
+            "type": "number"
+          }
+        },
+        "required": [
+          "qty"
+        ],
+        "title": "QtyIn",
+        "type": "object"
+      },
+      "PromoIn": {
+        "properties": {
+          "code": {
+            "default": "",
+            "title": "Code",
+            "type": "string"
+          }
+        },
+        "title": "PromoIn",
+        "type": "object"
+      },
+      "DeliveryOffersOut": {
+        "properties": {
+          "postcode": {
+            "title": "Postcode",
+            "type": "string"
+          },
+          "in_zone": {
+            "title": "In Zone",
+            "type": "boolean"
+          },
+          "zone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zone"
+          },
+          "fee_tiers": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/FeeTierOut"
+            },
+            "title": "Fee Tiers",
+            "type": "array"
+          },
+          "asap": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SlotOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "slots": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/SlotOut"
+            },
+            "title": "Slots",
+            "type": "array"
+          }
+        },
+        "required": [
+          "postcode",
+          "in_zone"
+        ],
+        "title": "DeliveryOffersOut",
+        "type": "object"
+      },
+      "FeeTierOut": {
+        "properties": {
+          "min_subtotal_cents": {
+            "title": "Min Subtotal Cents",
+            "type": "integer"
+          },
+          "max_subtotal_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Subtotal Cents"
+          },
+          "fee_cents": {
+            "title": "Fee Cents",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "min_subtotal_cents",
+          "fee_cents"
+        ],
+        "title": "FeeTierOut",
+        "type": "object"
+      },
+      "SlotOut": {
+        "properties": {
+          "template_code": {
+            "title": "Template Code",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "delivery_date": {
+            "format": "date",
+            "title": "Delivery Date",
+            "type": "string"
+          },
+          "deliver_from": {
+            "title": "Deliver From",
+            "type": "string"
+          },
+          "deliver_to": {
+            "title": "Deliver To",
+            "type": "string"
+          },
+          "deliver_starts_at": {
+            "format": "date-time",
+            "title": "Deliver Starts At",
+            "type": "string"
+          },
+          "order_by": {
+            "format": "date-time",
+            "title": "Order By",
+            "type": "string"
+          },
+          "orders_left": {
+            "title": "Orders Left",
+            "type": "integer"
+          },
+          "is_full": {
+            "title": "Is Full",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_code",
+          "name",
+          "delivery_date",
+          "deliver_from",
+          "deliver_to",
+          "deliver_starts_at",
+          "order_by",
+          "orders_left",
+          "is_full"
+        ],
+        "title": "SlotOut",
+        "type": "object"
+      },
+      "PlacedOut": {
+        "properties": {
+          "order_number": {
+            "title": "Order Number",
+            "type": "string"
+          },
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "payment_method": {
+            "title": "Payment Method",
+            "type": "string"
+          },
+          "total_cents": {
+            "title": "Total Cents",
+            "type": "integer"
+          },
+          "pay_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pay Url"
+          }
+        },
+        "required": [
+          "order_number",
+          "token",
+          "status",
+          "payment_method",
+          "total_cents"
+        ],
+        "title": "PlacedOut",
+        "type": "object"
+      },
+      "CheckoutIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "phone": {
+            "default": "",
+            "title": "Phone",
+            "type": "string"
+          },
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "street": {
+            "title": "Street",
+            "type": "string"
+          },
+          "house_number": {
+            "title": "House Number",
+            "type": "string"
+          },
+          "addition": {
+            "default": "",
+            "title": "Addition",
+            "type": "string"
+          },
+          "postcode": {
+            "title": "Postcode",
+            "type": "string"
+          },
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "notes": {
+            "default": "",
+            "title": "Notes",
+            "type": "string"
+          },
+          "delivery_choice": {
+            "default": "time_range",
+            "title": "Delivery Choice",
+            "type": "string"
+          },
+          "template_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Template Code"
+          },
+          "delivery_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivery Date"
+          },
+          "payment_method": {
+            "title": "Payment Method",
+            "type": "string"
+          },
+          "terms_accepted": {
+            "default": false,
+            "title": "Terms Accepted",
+            "type": "boolean"
+          },
+          "marketing_opt_in": {
+            "default": false,
+            "title": "Marketing Opt In",
+            "type": "boolean"
+          },
+          "save_address": {
+            "default": false,
+            "title": "Save Address",
+            "type": "boolean"
+          },
+          "language": {
+            "default": "nl",
+            "title": "Language",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "street",
+          "house_number",
+          "postcode",
+          "city",
+          "payment_method"
+        ],
+        "title": "CheckoutIn",
+        "type": "object"
+      },
+      "HistoryOut": {
+        "properties": {
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "at": {
+            "format": "date-time",
+            "title": "At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "at"
+        ],
+        "title": "HistoryOut",
+        "type": "object"
+      },
+      "OrderLineOut": {
+        "properties": {
+          "sku": {
+            "title": "Sku",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "qty": {
+            "title": "Qty",
+            "type": "number"
+          },
+          "unit_price_cents": {
+            "title": "Unit Price Cents",
+            "type": "integer"
+          },
+          "line_total_cents": {
+            "title": "Line Total Cents",
+            "type": "integer"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          }
+        },
+        "required": [
+          "sku",
+          "name",
+          "qty",
+          "unit_price_cents",
+          "line_total_cents"
+        ],
+        "title": "OrderLineOut",
+        "type": "object"
+      },
+      "OrderOut": {
+        "properties": {
+          "order_number": {
+            "title": "Order Number",
+            "type": "string"
+          },
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "placed_at": {
+            "format": "date-time",
+            "title": "Placed At",
+            "type": "string"
+          },
+          "payment_method": {
+            "title": "Payment Method",
+            "type": "string"
+          },
+          "subtotal_cents": {
+            "title": "Subtotal Cents",
+            "type": "integer"
+          },
+          "discount_cents": {
+            "title": "Discount Cents",
+            "type": "integer"
+          },
+          "delivery_fee_cents": {
+            "title": "Delivery Fee Cents",
+            "type": "integer"
+          },
+          "total_cents": {
+            "title": "Total Cents",
+            "type": "integer"
+          },
+          "vat_9_cents": {
+            "title": "Vat 9 Cents",
+            "type": "integer"
+          },
+          "vat_21_cents": {
+            "title": "Vat 21 Cents",
+            "type": "integer"
+          },
+          "promo_code": {
+            "default": "",
+            "title": "Promo Code",
+            "type": "string"
+          },
+          "contact_email": {
+            "title": "Contact Email",
+            "type": "string"
+          },
+          "ship_name": {
+            "title": "Ship Name",
+            "type": "string"
+          },
+          "ship_address": {
+            "title": "Ship Address",
+            "type": "string"
+          },
+          "ship_postcode": {
+            "title": "Ship Postcode",
+            "type": "string"
+          },
+          "ship_city": {
+            "title": "Ship City",
+            "type": "string"
+          },
+          "ship_notes": {
+            "default": "",
+            "title": "Ship Notes",
+            "type": "string"
+          },
+          "delivery_window_from": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivery Window From"
+          },
+          "delivery_window_to": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivery Window To"
+          },
+          "confirm_deadline_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirm Deadline At"
+          },
+          "can_cancel": {
+            "default": false,
+            "title": "Can Cancel",
+            "type": "boolean"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/OrderLineOut"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/HistoryOut"
+            },
+            "title": "History",
+            "type": "array"
+          }
+        },
+        "required": [
+          "order_number",
+          "token",
+          "status",
+          "placed_at",
+          "payment_method",
+          "subtotal_cents",
+          "discount_cents",
+          "delivery_fee_cents",
+          "total_cents",
+          "vat_9_cents",
+          "vat_21_cents",
+          "contact_email",
+          "ship_name",
+          "ship_address",
+          "ship_postcode",
+          "ship_city",
+          "lines",
+          "history"
+        ],
+        "title": "OrderOut",
+        "type": "object"
+      },
+      "PayResultIn": {
+        "properties": {
+          "token": {
+            "title": "Token",
+            "type": "string"
+          },
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "result"
+        ],
+        "title": "PayResultIn",
+        "type": "object"
+      },
+      "OrderSummary": {
+        "properties": {
+          "order_number": {
+            "title": "Order Number",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "placed_at": {
+            "format": "date-time",
+            "title": "Placed At",
+            "type": "string"
+          },
+          "total_cents": {
+            "title": "Total Cents",
+            "type": "integer"
+          },
+          "item_count": {
+            "title": "Item Count",
+            "type": "integer"
+          },
+          "delivery_window_from": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivery Window From"
+          },
+          "delivery_window_to": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivery Window To"
+          }
+        },
+        "required": [
+          "order_number",
+          "status",
+          "placed_at",
+          "total_cents",
+          "item_count"
+        ],
+        "title": "OrderSummary",
+        "type": "object"
+      },
+      "MeOut": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "first_name",
+          "last_name",
+          "phone",
+          "language"
+        ],
+        "title": "MeOut",
+        "type": "object"
+      },
+      "RegisterIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          },
+          "first_name": {
+            "default": "",
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "default": "",
+            "title": "Last Name",
+            "type": "string"
+          },
+          "phone": {
+            "default": "",
+            "title": "Phone",
+            "type": "string"
+          },
+          "language": {
+            "default": "nl",
+            "title": "Language",
+            "type": "string"
+          },
+          "marketing_opt_in": {
+            "default": false,
+            "title": "Marketing Opt In",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "RegisterIn",
+        "type": "object"
+      },
+      "LoginIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginIn",
+        "type": "object"
+      },
+      "MeIn": {
+        "properties": {
+          "first_name": {
+            "default": "",
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "default": "",
+            "title": "Last Name",
+            "type": "string"
+          },
+          "phone": {
+            "default": "",
+            "title": "Phone",
+            "type": "string"
+          },
+          "language": {
+            "default": "nl",
+            "title": "Language",
+            "type": "string"
+          }
+        },
+        "title": "MeIn",
+        "type": "object"
+      },
+      "AddressOut": {
+        "properties": {
+          "label": {
+            "default": "",
+            "title": "Label",
+            "type": "string"
+          },
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "street": {
+            "title": "Street",
+            "type": "string"
+          },
+          "house_number": {
+            "title": "House Number",
+            "type": "string"
+          },
+          "addition": {
+            "default": "",
+            "title": "Addition",
+            "type": "string"
+          },
+          "postcode": {
+            "title": "Postcode",
+            "type": "string"
+          },
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "delivery_notes": {
+            "default": "",
+            "title": "Delivery Notes",
+            "type": "string"
+          },
+          "is_default": {
+            "default": false,
+            "title": "Is Default",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "street",
+          "house_number",
+          "postcode",
+          "city",
+          "id"
+        ],
+        "title": "AddressOut",
+        "type": "object"
+      },
+      "AddressIn": {
+        "properties": {
+          "label": {
+            "default": "",
+            "title": "Label",
+            "type": "string"
+          },
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "street": {
+            "title": "Street",
+            "type": "string"
+          },
+          "house_number": {
+            "title": "House Number",
+            "type": "string"
+          },
+          "addition": {
+            "default": "",
+            "title": "Addition",
+            "type": "string"
+          },
+          "postcode": {
+            "title": "Postcode",
+            "type": "string"
+          },
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "delivery_notes": {
+            "default": "",
+            "title": "Delivery Notes",
+            "type": "string"
+          },
+          "is_default": {
+            "default": false,
+            "title": "Is Default",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "street",
+          "house_number",
+          "postcode",
+          "city"
+        ],
+        "title": "AddressIn",
+        "type": "object"
+      }
+    }
+  },
+  "servers": []
+}

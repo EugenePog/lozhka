@@ -1,0 +1,3 @@
+name,postcode4_ranges,is_active
+Amsterdam and surroundings,"[""1000-1109"", ""1180-1189"", ""1380-1399""]",true
+Utrecht,"[""3500-3584""]",true

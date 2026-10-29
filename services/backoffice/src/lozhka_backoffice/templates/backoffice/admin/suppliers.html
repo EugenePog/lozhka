@@ -1,0 +1,4 @@
+{% extends "backoffice/base.html" %}{% block title %}Suppliers{% endblock %}
+{% block content %}<h1>Suppliers</h1><table><thead><tr><th>Name</th><th>Country</th><th>Channel</th><th class="num">Lead time (days)</th><th>Active</th><th></th></tr></thead><tbody>
+{% for s in suppliers %}<tr><td><strong>{{ s.name }}</strong></td><td>{{ s.country }}</td><td>{{ s.order_channel }}</td><td class="num">{{ s.default_lead_time_days }}</td><td>{{ s.is_active|yesno:"yes,no" }}</td><td><a class="btn sm secondary" href="{% url 'supplier_detail' s.pk %}">Open</a></td></tr>{% endfor %}</tbody></table>
+<p class="muted">Add or rename suppliers under Catalogue and content (Django admin).</p>{% endblock %}

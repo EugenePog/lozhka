@@ -1,0 +1,4 @@
+supplier,delivery_ref,status,expected_date,received_at,vehicle_temperature_c,note
+Eastern Foods Wholesale BV,EFW-2026-0412,accepted,-3d,-3d,4.0,Seed delivery
+Baltic Import Sp. z o.o.,BI-2026-0188,accepted,-3d,-3d,3.5,Seed delivery
+Frost Logistics BV,FL-2026-0077,accepted,-3d,-3d,-18.5,Seed delivery

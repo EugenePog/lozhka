@@ -1,0 +1,4 @@
+code,name,collect_from,collect_to,deliver_from,deliver_to,capacity_orders,cod_confirmation_hours,sort,is_active
+A,"Afternoon, next day",22:00,10:00,13:00,17:00,20,4,1,true
+B,"Evening, same day",10:00,16:00,17:00,21:00,20,3,2,true
+C,"Morning, next day",16:00,22:00,10:00,14:00,20,4,3,true

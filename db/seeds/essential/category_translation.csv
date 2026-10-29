@@ -1,0 +1,52 @@
+category,lang,name
+offers,nl,Aanbiedingen
+offers,en,Offers
+offers,ru,Акции
+dairy-eggs,nl,Zuivel & eieren
+dairy-eggs,en,Dairy & eggs
+dairy-eggs,ru,Молочные продукты и яйца
+meat-fish,nl,Vlees & vis
+meat-fish,en,Meat & fish
+meat-fish,ru,Мясо и рыба
+frozen,nl,Diepvries
+frozen,en,Frozen
+frozen,ru,Заморозка
+bakery,nl,Brood & bakkerij
+bakery,en,Bread & bakery
+bakery,ru,Хлеб и выпечка
+pantry,nl,Voorraadkast
+pantry,en,Pantry
+pantry,ru,Бакалея
+sweets,nl,Zoetwaren
+sweets,en,Sweets & snacks
+sweets,ru,Сладости и снеки
+drinks,nl,Dranken
+drinks,en,Drinks
+drinks,ru,Напитки
+preserves,nl,Ingemaakt & conserven
+preserves,en,Pickles & preserves
+preserves,ru,Консервация и соленья
+kefir-yoghurt,nl,Kefir & yoghurt
+kefir-yoghurt,en,Kefir & yoghurt
+kefir-yoghurt,ru,Кефир и йогурты
+cheese-quark,nl,Kaas & kwark
+cheese-quark,en,Cheese & quark
+cheese-quark,ru,Сыр и творог
+sausages,nl,Worst & vleeswaren
+sausages,en,Sausages & cold cuts
+sausages,ru,Колбасы и мясные деликатесы
+fish,nl,Vis
+fish,en,Fish
+fish,ru,Рыба
+dumplings,nl,Pelmeni & vareniki
+dumplings,en,Dumplings
+dumplings,ru,Пельмени и вареники
+grains-pasta,nl,Granen & pasta
+grains-pasta,en,Grains & pasta
+grains-pasta,ru,Крупы и макароны
+oils-sauces,nl,Oliën & sauzen
+oils-sauces,en,Oils & sauces
+oils-sauces,ru,Масла и соусы
+tea-coffee,nl,Thee & koffie
+tea-coffee,en,Tea & coffee
+tea-coffee,ru,Чай и кофе

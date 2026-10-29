@@ -1,0 +1,7 @@
+zone,min_subtotal_cents,max_subtotal_cents,fee_cents
+Amsterdam and surroundings,0,7499,695
+Amsterdam and surroundings,7500,9999,395
+Amsterdam and surroundings,10000,,0
+Utrecht,0,7499,695
+Utrecht,7500,9999,395
+Utrecht,10000,,0

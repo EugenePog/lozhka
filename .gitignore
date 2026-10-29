@@ -218,3 +218,28 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- LOZHKA additions ---
+# JavaScript / Next.js / Expo
+node_modules/
+.next/
+.expo/
+.turbo/
+*.tsbuildinfo
+# dbt
+pipelines/dbt/profiles.yml
+pipelines/dbt/logs/
+pipelines/dbt/dbt_packages/
+# pm2 and local data
+logs/
+*.pid
+infra/osrm/data/
+# OS
+.DS_Store
+
+# Next.js app: apps/web/lib is source code, not a Python build folder
+!apps/web/lib/
+!apps/web/lib/**
+.next/
+.secrets/
+apps/web/e2e/out/

@@ -1,0 +1,94 @@
+product,lang,name,short_description,description,search_terms
+DAI-KEF-1L,nl,"Kefir 2,5%","Kefir 2,5% - 1000 ml","Kefir 2,5% van Dobryi Dom.",kefir kefir
+DAI-KEF-1L,en,Kefir 2.5%,Kefir 2.5% - 1000 ml,Kefir 2.5% by Dobryi Dom.,kefir kefir
+DAI-KEF-1L,ru,"Кефир 2,5%","Кефир 2,5% - 1000 ml","Кефир 2,5% от Dobryi Dom.",kefir kefir
+DAI-RYA-500,nl,Ryazhenka 4%,Ryazhenka 4% - 500 ml,Ryazhenka 4% van Dobryi Dom.,ryazhenka riazhenka
+DAI-RYA-500,en,Ryazhenka 4%,Ryazhenka 4% - 500 ml,Ryazhenka 4% by Dobryi Dom.,ryazhenka riazhenka
+DAI-RYA-500,ru,Ряженка 4%,Ряженка 4% - 500 ml,Ряженка 4% от Dobryi Dom.,ryazhenka riazhenka
+DAI-TVO-400,nl,Tvorog 5%,Tvorog 5% - 400 g,Tvorog 5% van Volga Fresh.,tvorog twarog curd
+DAI-TVO-400,en,Tvorog (curd) 5%,Tvorog (curd) 5% - 400 g,Tvorog (curd) 5% by Volga Fresh.,tvorog twarog curd
+DAI-TVO-400,ru,Творог 5%,Творог 5% - 400 g,Творог 5% от Volga Fresh.,tvorog twarog curd
+DAI-SMT-400,nl,Smetana 20%,Smetana 20% - 400 g,Smetana 20% van Volga Fresh.,smetana sour cream
+DAI-SMT-400,en,Smetana (sour cream) 20%,Smetana (sour cream) 20% - 400 g,Smetana (sour cream) 20% by Volga Fresh.,smetana sour cream
+DAI-SMT-400,ru,Сметана 20%,Сметана 20% - 400 g,Сметана 20% от Volga Fresh.,smetana sour cream
+DAI-SYR-200,nl,Gesmolten kaas,Gesmolten kaas - 200 g,Gesmolten kaas van Karpaty.,plavlenyi syr druzhba
+DAI-SYR-200,en,Processed cheese,Processed cheese - 200 g,Processed cheese by Karpaty.,plavlenyi syr druzhba
+DAI-SYR-200,ru,Плавленый сыр,Плавленый сыр - 200 g,Плавленый сыр от Karpaty.,plavlenyi syr druzhba
+MEA-DOK-500,nl,Doktorskaya worst,Doktorskaya worst - 500 g,Doktorskaya worst van Baltic Gold.,doktorskaya kolbasa
+MEA-DOK-500,en,Doktorskaya sausage,Doktorskaya sausage - 500 g,Doktorskaya sausage by Baltic Gold.,doktorskaya kolbasa
+MEA-DOK-500,ru,Колбаса Докторская,Колбаса Докторская - 500 g,Колбаса Докторская от Baltic Gold.,doktorskaya kolbasa
+MEA-KRA-400,nl,Krakowska worst,Krakowska worst - 400 g,Krakowska worst van Baltic Gold.,krakowska kielbasa
+MEA-KRA-400,en,Krakowska sausage,Krakowska sausage - 400 g,Krakowska sausage by Baltic Gold.,krakowska kielbasa
+MEA-KRA-400,ru,Колбаса Краковская,Колбаса Краковская - 400 g,Колбаса Краковская от Baltic Gold.,krakowska kielbasa
+FIS-SEL-500,nl,Haring in olie,Haring in olie - 500 g,Haring in olie van Chernomor.,selyodka herring seld
+FIS-SEL-500,en,Herring in oil,Herring in oil - 500 g,Herring in oil by Chernomor.,selyodka herring seld
+FIS-SEL-500,ru,Сельдь в масле,Сельдь в масле - 500 g,Сельдь в масле от Chernomor.,selyodka herring seld
+FIS-SHP-250,nl,Gerookte makreel,Gerookte makreel - 250 g,Gerookte makreel van Chernomor.,skumbriya mackerel
+FIS-SHP-250,en,Smoked mackerel,Smoked mackerel - 250 g,Smoked mackerel by Chernomor.,skumbriya mackerel
+FIS-SHP-250,ru,Скумбрия горячего копчения,Скумбрия горячего копчения - 250 g,Скумбрия горячего копчения от Chernomor.,skumbriya mackerel
+FRZ-PEL-800,nl,Pelmeni Siberisch,Pelmeni Siberisch - 800 g,Pelmeni Siberisch van Sibirskaya Zemlya.,pelmeni pelmieni
+FRZ-PEL-800,en,Siberian pelmeni,Siberian pelmeni - 800 g,Siberian pelmeni by Sibirskaya Zemlya.,pelmeni pelmieni
+FRZ-PEL-800,ru,Пельмени Сибирские,Пельмени Сибирские - 800 g,Пельмени Сибирские от Sibirskaya Zemlya.,pelmeni pelmieni
+FRZ-VAR-500,nl,Vareniki met aardappel,Vareniki met aardappel - 500 g,Vareniki met aardappel van Sibirskaya Zemlya.,vareniki
+FRZ-VAR-500,en,Potato vareniki,Potato vareniki - 500 g,Potato vareniki by Sibirskaya Zemlya.,vareniki
+FRZ-VAR-500,ru,Вареники с картошкой,Вареники с картошкой - 500 g,Вареники с картошкой от Sibirskaya Zemlya.,vareniki
+FRZ-PEL-1K,nl,Pelmeni kip,Pelmeni kip - 1000 g,Pelmeni kip van Sibirskaya Zemlya.,pelmeni chicken
+FRZ-PEL-1K,en,Chicken pelmeni,Chicken pelmeni - 1000 g,Chicken pelmeni by Sibirskaya Zemlya.,pelmeni chicken
+FRZ-PEL-1K,ru,Пельмени с курицей,Пельмени с курицей - 1000 g,Пельмени с курицей от Sibirskaya Zemlya.,pelmeni chicken
+BAK-BOR-700,nl,Borodinsky brood,Borodinsky brood - 700 g,Borodinsky brood van Zolotaya Niva.,borodinsky rye bread
+BAK-BOR-700,en,Borodinsky rye bread,Borodinsky rye bread - 700 g,Borodinsky rye bread by Zolotaya Niva.,borodinsky rye bread
+BAK-BOR-700,ru,Хлеб Бородинский,Хлеб Бородинский - 700 g,Хлеб Бородинский от Zolotaya Niva.,borodinsky rye bread
+BAK-BAR-300,nl,Bublik met maanzaad,Bublik met maanzaad - 300 g,Bublik met maanzaad van Zolotaya Niva.,bubliki sushki
+BAK-BAR-300,en,Bagel rings with poppy,Bagel rings with poppy - 300 g,Bagel rings with poppy by Zolotaya Niva.,bubliki sushki
+BAK-BAR-300,ru,Бублики с маком,Бублики с маком - 300 g,Бублики с маком от Zolotaya Niva.,bubliki sushki
+PAN-GRE-900,nl,Boekweit,Boekweit - 900 g,Boekweit van Altai Herbs.,grechka buckwheat
+PAN-GRE-900,en,Buckwheat groats,Buckwheat groats - 900 g,Buckwheat groats by Altai Herbs.,grechka buckwheat
+PAN-GRE-900,ru,Гречка,Гречка - 900 g,Гречка от Altai Herbs.,grechka buckwheat
+PAN-RIC-800,nl,Ronde rijst,Ronde rijst - 800 g,Ronde rijst van Altai Herbs.,ris rice
+PAN-RIC-800,en,Round grain rice,Round grain rice - 800 g,Round grain rice by Altai Herbs.,ris rice
+PAN-RIC-800,ru,Рис круглозёрный,Рис круглозёрный - 800 g,Рис круглозёрный от Altai Herbs.,ris rice
+PAN-PAS-400,nl,Vermicelli,Vermicelli - 400 g,Vermicelli van Zolotaya Niva.,vermishel vermicelli
+PAN-PAS-400,en,Vermicelli,Vermicelli - 400 g,Vermicelli by Zolotaya Niva.,vermishel vermicelli
+PAN-PAS-400,ru,Вермишель,Вермишель - 400 g,Вермишель от Zolotaya Niva.,vermishel vermicelli
+PAN-SOL-1L,nl,Zonnebloemolie ongeraffineerd,Zonnebloemolie ongeraffineerd - 1000 ml,Zonnebloemolie ongeraffineerd van Zolotaya Niva.,maslo sunflower oil
+PAN-SOL-1L,en,Unrefined sunflower oil,Unrefined sunflower oil - 1000 ml,Unrefined sunflower oil by Zolotaya Niva.,maslo sunflower oil
+PAN-SOL-1L,ru,Подсолнечное масло нерафинированное,Подсолнечное масло нерафинированное - 1000 ml,Подсолнечное масло нерафинированное от Zolotaya Niva.,maslo sunflower oil
+PAN-MAY-400,nl,Provençal mayonaise,Provençal mayonaise - 400 ml,Provençal mayonaise van Zolotaya Niva.,mayonez mayonnaise
+PAN-MAY-400,en,Provencal mayonnaise,Provencal mayonnaise - 400 ml,Provencal mayonnaise by Zolotaya Niva.,mayonez mayonnaise
+PAN-MAY-400,ru,Майонез Провансаль,Майонез Провансаль - 400 ml,Майонез Провансаль от Zolotaya Niva.,mayonez mayonnaise
+PAN-TKM-480,nl,Tkemali saus,Tkemali saus - 480 g,Tkemali saus van Karpaty.,tkemali sous
+PAN-TKM-480,en,Tkemali sauce,Tkemali sauce - 480 g,Tkemali sauce by Karpaty.,tkemali sous
+PAN-TKM-480,ru,Соус ткемали,Соус ткемали - 480 g,Соус ткемали от Karpaty.,tkemali sous
+PRE-GHE-720,nl,Zure komkommers,Zure komkommers - 720 g,Zure komkommers van Karpaty.,ogurtsy gherkins pickles
+PRE-GHE-720,en,Pickled gherkins,Pickled gherkins - 720 g,Pickled gherkins by Karpaty.,ogurtsy gherkins pickles
+PRE-GHE-720,ru,Огурцы маринованные,Огурцы маринованные - 720 g,Огурцы маринованные от Karpaty.,ogurtsy gherkins pickles
+PRE-SAU-800,nl,Zuurkool,Zuurkool - 800 g,Zuurkool van Karpaty.,kapusta sauerkraut
+PRE-SAU-800,en,Sauerkraut,Sauerkraut - 800 g,Sauerkraut by Karpaty.,kapusta sauerkraut
+PRE-SAU-800,ru,Квашеная капуста,Квашеная капуста - 800 g,Квашеная капуста от Karpaty.,kapusta sauerkraut
+PRE-BEE-450,nl,Rode biet gemarineerd,Rode biet gemarineerd - 450 g,Rode biet gemarineerd van Karpaty.,svekla beetroot
+PRE-BEE-450,en,Marinated beetroot,Marinated beetroot - 450 g,Marinated beetroot by Karpaty.,svekla beetroot
+PRE-BEE-450,ru,Свёкла маринованная,Свёкла маринованная - 450 g,Свёкла маринованная от Karpaty.,svekla beetroot
+SWE-ALY-100,nl,Alyonka chocolade,Alyonka chocolade - 100 g,Alyonka chocolade van Zolotaya Niva.,alenka alyonka chocolate
+SWE-ALY-100,en,Alyonka chocolate,Alyonka chocolate - 100 g,Alyonka chocolate by Zolotaya Niva.,alenka alyonka chocolate
+SWE-ALY-100,ru,Шоколад Алёнка,Шоколад Алёнка - 100 g,Шоколад Алёнка от Zolotaya Niva.,alenka alyonka chocolate
+SWE-ZEF-250,nl,Zefir vanille,Zefir vanille - 250 g,Zefir vanille van Zolotaya Niva.,zefir marshmallow
+SWE-ZEF-250,en,Vanilla zefir,Vanilla zefir - 250 g,Vanilla zefir by Zolotaya Niva.,zefir marshmallow
+SWE-ZEF-250,ru,Зефир ванильный,Зефир ванильный - 250 g,Зефир ванильный от Zolotaya Niva.,zefir marshmallow
+SWE-HAL-350,nl,Halva zonnebloempit,Halva zonnebloempit - 350 g,Halva zonnebloempit van Zolotaya Niva.,halva halwa
+SWE-HAL-350,en,Sunflower halva,Sunflower halva - 350 g,Sunflower halva by Zolotaya Niva.,halva halwa
+SWE-HAL-350,ru,Халва подсолнечная,Халва подсолнечная - 350 g,Халва подсолнечная от Zolotaya Niva.,halva halwa
+DRK-KVA-2L,nl,Kvas klassiek,Kvas klassiek - 2000 ml,Kvas klassiek van Chernomor.,kvas kvass
+DRK-KVA-2L,en,Classic kvass,Classic kvass - 2000 ml,Classic kvass by Chernomor.,kvas kvass
+DRK-KVA-2L,ru,Квас классический,Квас классический - 2000 ml,Квас классический от Chernomor.,kvas kvass
+DRK-COM-1L,nl,Kompot kers,Kompot kers - 1000 ml,Kompot kers van Chernomor.,kompot compote
+DRK-COM-1L,en,Cherry kompot,Cherry kompot - 1000 ml,Cherry kompot by Chernomor.,kompot compote
+DRK-COM-1L,ru,Компот вишнёвый,Компот вишнёвый - 1000 ml,Компот вишнёвый от Chernomor.,kompot compote
+DRK-TEA-100,nl,Ivan-chai kruidenthee,Ivan-chai kruidenthee - 100 g,Ivan-chai kruidenthee van Altai Herbs.,ivan chai fireweed tea
+DRK-TEA-100,en,Ivan-chai herbal tea,Ivan-chai herbal tea - 100 g,Ivan-chai herbal tea by Altai Herbs.,ivan chai fireweed tea
+DRK-TEA-100,ru,Иван-чай,Иван-чай - 100 g,Иван-чай от Altai Herbs.,ivan chai fireweed tea
+DRK-TEA-25,nl,Zwarte thee met bergamot,Zwarte thee met bergamot - 50 g,Zwarte thee met bergamot van Altai Herbs.,chai tea earl grey
+DRK-TEA-25,en,Black tea with bergamot,Black tea with bergamot - 50 g,Black tea with bergamot by Altai Herbs.,chai tea earl grey
+DRK-TEA-25,ru,Чёрный чай с бергамотом,Чёрный чай с бергамотом - 50 g,Чёрный чай с бергамотом от Altai Herbs.,chai tea earl grey
+DRK-VOD-500,nl,Wodka 40%,Wodka 40% - 500 ml,Wodka 40% van Chernomor.,vodka
+DRK-VOD-500,en,Vodka 40%,Vodka 40% - 500 ml,Vodka 40% by Chernomor.,vodka
+DRK-VOD-500,ru,Водка 40%,Водка 40% - 500 ml,Водка 40% от Chernomor.,vodka

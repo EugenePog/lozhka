@@ -1,0 +1,3 @@
+customer,label,first_name,last_name,street,house_number,addition,postcode,city,delivery_notes,is_default,lat,lng
+demo@lozhka.example,Home,Olga,Petrova,Kinkerstraat,45,2,1053 EC,Amsterdam,Ring twice,true,52.3667,4.8730
+jan@lozhka.example,Home,Jan,de Vries,Javastraat,120,,1094 HG,Amsterdam,,true,52.3640,4.9380

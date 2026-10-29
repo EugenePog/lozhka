@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { background: theme("colors.cream"); color: theme("colors.green"); }
+  body { font-family: theme("fontFamily.sans"); font-size: 16px; line-height: 1.5; }
+  h1 { font-weight: 900; font-size: 2.375rem; line-height: 1.15; }
+  h2 { font-weight: 900; font-size: 1.625rem; line-height: 1.2; }
+  :focus-visible { outline: 3px solid theme("colors.terra"); outline-offset: 2px; border-radius: 8px; }
+  @media (max-width: 640px) { h1 { font-size: 1.75rem; } h2 { font-size: 1.375rem; } }
+}
+
+@layer components {
+  .btn { @apply inline-flex min-h-target items-center justify-center gap-2 rounded-full bg-terra px-6 font-bold text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:bg-[#c9c3b4] disabled:text-white/90; }
+  .btn-outline { @apply inline-flex min-h-target items-center justify-center gap-2 rounded-full border-2 border-terra bg-transparent px-6 font-bold text-terra transition hover:bg-terra-tint disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-sm { @apply min-h-[36px] px-4 text-sm; }
+  .link { @apply font-semibold text-terra underline-offset-2 hover:underline; }
+  .card { @apply rounded-card border border-line bg-card; }
+  .field { @apply min-h-target w-full rounded-input border border-form-line bg-card px-4 py-2 text-green placeholder:text-muted/70; }
+  .label { @apply mb-1 block text-sm font-bold; }
+  .err { @apply mt-1 text-sm font-semibold text-terra; }
+  .chip { @apply inline-flex items-center rounded-full bg-green-tint px-3 py-1 text-xs font-bold text-green; }
+  .chip-terra { @apply inline-flex items-center rounded-full bg-terra-tint px-3 py-1 text-xs font-bold text-terra-tint-text; }
+  .ph { background: linear-gradient(135deg, theme("colors.ph-from"), theme("colors.ph-to")); }
+  .container-page { @apply mx-auto w-full max-w-page px-4 sm:px-8; }
+}

@@ -1,0 +1,2 @@
+{% extends "backoffice/base.html" %}{% block title %}Not allowed{% endblock %}
+{% block content %}<div class="card"><h1>Not allowed</h1><p class="sub">Your roles do not include this page.</p><a class="btn secondary" href="{% url 'home' %}">Back to my first page</a></div>{% endblock %}

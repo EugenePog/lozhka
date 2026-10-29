@@ -1,0 +1,20 @@
+{
+  "name": "@lozhka/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "export": "cd ../../services/api/src && DJANGO_SETTINGS_MODULE=config.settings.public ../../../.venv/bin/python manage.py export_openapi_schema --api lozhka_api.api.main.api --indent 2 > ../../../packages/api-client/openapi.json",
+    "generate": "openapi-typescript openapi.json -o src/schema.d.ts",
+    "refresh": "pnpm run export && pnpm run generate"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.13.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.4.0",
+    "typescript": "^5.6.0"
+  }
+}

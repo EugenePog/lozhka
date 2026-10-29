@@ -1,0 +1,18 @@
+{% extends "backoffice/base.html" %}{% load staff %}{% block title %}Incoming deliveries{% endblock %}
+{% block content %}<h1>Storekeeper</h1><div class="tabs"><a class="on" href="{% url 'incoming' %}">Incoming deliveries</a>{% if perms.core.adjust_stock %}<a href="{% url 'stock' %}">Stock adjustments</a>{% endif %}</div>
+<div class="grid2" style="grid-template-columns:320px 1fr;align-items:start">
+<div class="stack"><div class="card"><h2 style="margin-top:0">Deliveries</h2>
+{% for r in recs %}<p style="margin:0 0 10px"><a href="?r={{ r.pk }}"><strong>{{ r.supplier.name }}</strong></a><br><span class="muted">{{ r.delivery_ref }} · {{ r.expected_date|date:"j M" }}</span>
+<span class="tag {% if r.status == 'accepted' %}mute{% elif r.issues %}bad{% endif %}">{% if r.status == 'accepted' %}received{% elif r.issues %}{{ r.issues }} issue{{ r.issues|pluralize }}{% else %}open{% endif %}</span></p>{% empty %}<p class="muted">Nothing expected.</p>{% endfor %}</div>
+<div class="card"><h2 style="margin-top:0">Upload supplier document</h2><form method="post" action="{% url 'incoming_upload' %}" enctype="multipart/form-data">{% csrf_token %}
+<label for="s">Supplier</label><select id="s" name="supplier" style="width:100%">{% for s in suppliers %}<option value="{{ s.pk }}">{{ s.name }}</option>{% endfor %}</select>
+<label for="f">CSV file</label><input id="f" type="file" name="file" accept=".csv" required><p class="muted" style="font-size:13px">Columns: supplier_sku, qty, best_before, lot. Excel layouts come with the document parser.</p><button class="btn secondary">Upload</button></form></div></div>
+<div>{% if sel %}<form method="post" action="{% url 'incoming_save' sel.pk %}">{% csrf_token %}<div class="row" style="justify-content:space-between"><div><h2 style="margin:0">{{ sel.supplier.name }} · {{ sel.delivery_ref }}</h2><span class="muted">{{ sel.get_status_display }}{% if sel.received_at %} · received {{ sel.received_at|date:"j M H:i" }}{% endif %}</span></div></div>
+<table style="margin-top:10px"><thead><tr><th>Product</th><th class="num">Expected</th><th>Received</th><th>Rejected</th><th>Best before</th><th>Lot</th><th>Issue</th></tr></thead><tbody>
+{% for r in lines %}{% with l=r.l %}<tr><td><strong>{{ l.product.sku }}</strong></td><td class="num">{{ l.qty_expected|default_if_none:""|qty }}</td>
+<td><input name="l{{ l.id }}_qty" value="{{ l.qty_received|qty }}" style="width:90px" {% if sel.status != 'open' %}disabled{% endif %}></td>
+<td><input name="l{{ l.id }}_rej" value="{{ l.qty_rejected|qty }}" style="width:70px" {% if sel.status != 'open' %}disabled{% endif %}></td>
+<td><input type="date" name="l{{ l.id }}_bb" value="{{ l.best_before|date:'Y-m-d' }}" {% if sel.status != 'open' %}disabled{% endif %}></td>
+<td><input name="l{{ l.id }}_lot" value="{{ l.supplier_lot_code }}" style="width:130px" {% if sel.status != 'open' %}disabled{% endif %}></td><td><span class="tag {{ r.cls }}">{{ r.label }}</span></td></tr>{% endwith %}{% empty %}<tr><td colspan="7" class="muted">No lines. Upload a supplier document.</td></tr>{% endfor %}</tbody></table>
+{% if sel.status == 'open' %}<div class="row" style="margin-top:12px"><button class="btn secondary" name="submit" value="save">Save changes</button><button class="btn" name="submit" value="receive">Receive delivery</button></div>{% endif %}</form>
+{% else %}<div class="card">No deliveries yet.</div>{% endif %}</div></div>{% endblock %}

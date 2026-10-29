@@ -1,0 +1,1 @@
+SQL checks go here (run in CI against an empty database after all migrations). First candidates: change capture records insert/update/delete; `lozhka_api` cannot read `bronze.app_change_log`; `lozhka_report` cannot read `app`.
